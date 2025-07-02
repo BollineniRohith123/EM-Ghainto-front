@@ -226,11 +226,15 @@ body {
   font-weight: 500;
 }
 
+
+/* Main horizontal navbar (desktop) */
 .nav-menu {
   display: flex;
+  flex-direction: row;
   gap: 2rem;
   background: none;
   border: none;
+  align-items: center;
 }
 
 .nav-menu button {
@@ -244,6 +248,7 @@ body {
   cursor: pointer;
   transition: var(--transition);
   position: relative;
+  outline: none;
 }
 
 .nav-menu button:hover {
@@ -1558,14 +1563,22 @@ body {
   box-shadow: var(--shadow);
 }
 
-.nav-menu {
+
+/* Sidebar/vertical nav for dashboard or mobile */
+.sidebar .nav-menu,
+.nav-menu.mobile-open {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   padding: 0 1rem;
+  background: white;
+  position: static;
+  box-shadow: none;
+  width: 100%;
 }
 
-.nav-menu button {
+.sidebar .nav-menu button,
+.nav-menu.mobile-open button {
   background: none;
   border: none;
   padding: 14px 20px;
@@ -1581,12 +1594,14 @@ body {
   gap: 0.75rem;
 }
 
-.nav-menu button:hover {
+.sidebar .nav-menu button:hover,
+.nav-menu.mobile-open button:hover {
   background: rgba(102, 126, 234, 0.1);
   color: var(--primary-color);
 }
 
-.nav-menu button.active {
+.sidebar .nav-menu button.active,
+.nav-menu.mobile-open button.active {
   background: var(--primary-color);
   color: white;
   font-weight: 600;
@@ -2442,26 +2457,54 @@ body {
     padding: 0 16px;
   }
   
+
+/* Mobile nav overlay styles */
+@media (max-width: 900px) {
   .nav-menu {
+    display: none;
+  }
+  .nav-menu.mobile-open {
+    display: flex;
+    flex-direction: column;
     position: fixed;
-    top: 100%;
+    top: 64px;
     left: 0;
     right: 0;
     background: white;
-    flex-direction: column;
-    padding: 2rem;
+    padding: 2rem 1rem 1rem 1rem;
     box-shadow: var(--shadow-lg);
-    transform: translateY(-100%);
-    transition: var(--transition);
     z-index: 1000;
-    opacity: 0;
-    visibility: hidden;
-  }
-  
-  .nav-menu.mobile-open {
     opacity: 1;
     visibility: visible;
+    gap: 1rem;
+    border-radius: 0 0 16px 16px;
+    animation: fadeInDown 0.3s;
   }
+  .header-actions .mobile-menu-toggle {
+    display: inline-block;
+  }
+}
+
+@media (max-width: 900px) {
+  .header .nav-menu {
+    display: none;
+  }
+}
+
+@media (min-width: 901px) {
+  .header-actions .mobile-menu-toggle {
+    display: none;
+  }
+  .nav-menu {
+    display: flex !important;
+    flex-direction: row;
+    position: static;
+    background: none;
+    box-shadow: none;
+    gap: 2rem;
+    padding: 0;
+  }
+}
   
   .mobile-menu-toggle {
     display: block;

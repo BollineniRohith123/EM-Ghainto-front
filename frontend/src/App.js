@@ -1250,7 +1250,7 @@ function CustomersManagement() {
   const [sortBy, setSortBy] = useState('name');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
-
+  
   const filteredCustomers = SAMPLE_DATA.customers
     .filter(customer => 
       customer.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
@@ -1376,10 +1376,1088 @@ function CustomersManagement() {
   );
 }
 
-// Continue with other enhanced components...
-// [The rest of the dashboard components would follow the same enhanced pattern]
+// Projects Management Page
+function ProjectsManagement() {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filterStatus, setFilterStatus] = useState('All');
+  
+  const filteredProjects = SAMPLE_DATA.projects.filter(project => 
+    project.customerName.toLowerCase().includes(searchTerm.toLowerCase()) &&
+    (filterStatus === 'All' || project.status === filterStatus)
+  );
 
-// For brevity, I'll include the key remaining components:
+  return (
+    <div className="dashboard-content">
+      <div className="section-header">
+        <div>
+          <h2>Projects Management</h2>
+          <p>Monitor and manage all interior design projects</p>
+        </div>
+        <button className="add-btn">+ New Project</button>
+      </div>
+
+      <div className="filters-section">
+        <div className="search-bar">
+          <input
+            type="text"
+            placeholder="Search projects..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+        <div className="filter-controls">
+          <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)}>
+            <option value="All">All Status</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Design Phase">Design Phase</option>
+            <option value="Completed">Completed</option>
+            <option value="Procurement">Procurement</option>
+            <option value="Installation">Installation</option>
+          </select>
+        </div>
+      </div>
+
+      <div className="enhanced-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Project ID</th>
+              <th>Customer</th>
+              <th>Designer</th>
+              <th>Status</th>
+              <th>Progress</th>
+              <th>Budget</th>
+              <th>Spent</th>
+              <th>Location</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredProjects.map(project => (
+              <tr key={project.id} className="animate-fadeInUp">
+                <td><strong>{project.id}</strong></td>
+                <td>{project.customerName}</td>
+                <td>{project.designerName}</td>
+                <td>
+                  <span className={`status ${project.status.toLowerCase().replace(' ', '-')}`}>
+                    {project.status}
+                  </span>
+                </td>
+                <td>
+                  <div className="progress-bar">
+                    <div className="progress-fill" style={{width: `${project.progress}%`}}></div>
+                    <span>{project.progress}%</span>
+                  </div>
+                </td>
+                <td>₹{(project.budget / 100000).toFixed(1)}L</td>
+                <td>₹{(project.spent / 100000).toFixed(1)}L</td>
+                <td>{project.location}</td>
+                <td>
+                  <div className="action-buttons">
+                    <button className="action-btn view" title="View Details">👁️</button>
+                    <button className="action-btn edit" title="Edit">✏️</button>
+                    <button className="action-btn message" title="Message">💬</button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
+// Leads Management Page
+function LeadsManagement() {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filterStatus, setFilterStatus] = useState('All');
+  const [filterPriority, setFilterPriority] = useState('All');
+  
+  const filteredLeads = SAMPLE_DATA.leads.filter(lead => 
+    lead.customer.toLowerCase().includes(searchTerm.toLowerCase()) &&
+    (filterStatus === 'All' || lead.status === filterStatus) &&
+    (filterPriority === 'All' || lead.priority === filterPriority)
+  );
+
+  return (
+    <div className="dashboard-content">
+      <div className="section-header">
+        <div>
+          <h2>Leads Management</h2>
+          <p>Track and manage potential customer leads</p>
+        </div>
+        <button className="add-btn">+ New Lead</button>
+      </div>
+
+      <div className="filters-section">
+        <div className="search-bar">
+          <input
+            type="text"
+            placeholder="Search leads..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+        <div className="filter-controls">
+          <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)}>
+            <option value="All">All Status</option>
+            <option value="New">New</option>
+            <option value="Assigned">Assigned</option>
+            <option value="In Discussion">In Discussion</option>
+          </select>
+          <select value={filterPriority} onChange={(e) => setFilterPriority(e.target.value)}>
+            <option value="All">All Priority</option>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+          </select>
+        </div>
+      </div>
+
+      <div className="enhanced-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Lead ID</th>
+              <th>Customer</th>
+              <th>Contact</th>
+              <th>Budget</th>
+              <th>Location</th>
+              <th>Priority</th>
+              <th>Status</th>
+              <th>Assigned To</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredLeads.map(lead => (
+              <tr key={lead.id} className="animate-fadeInUp">
+                <td><strong>{lead.id}</strong></td>
+                <td>{lead.customer}</td>
+                <td>{lead.phone}</td>
+                <td>₹{lead.budget}</td>
+                <td>{lead.location}</td>
+                <td>
+                  <span className={`priority ${lead.priority.toLowerCase()}`}>
+                    {lead.priority}
+                  </span>
+                </td>
+                <td>
+                  <span className={`status ${lead.status.toLowerCase().replace(' ', '-')}`}>
+                    {lead.status}
+                  </span>
+                </td>
+                <td>{lead.assignedTo || 'Unassigned'}</td>
+                <td>
+                  <div className="action-buttons">
+                    <button className="action-btn assign" title="Assign">👨‍💼</button>
+                    <button className="action-btn call" title="Call">📞</button>
+                    <button className="action-btn convert" title="Convert">💼</button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
+// Designers Management Page
+function DesignersManagement() {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filterStatus, setFilterStatus] = useState('All');
+  
+  const filteredDesigners = SAMPLE_DATA.designers.filter(designer => 
+    designer.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+    (filterStatus === 'All' || designer.status === filterStatus)
+  );
+
+  return (
+    <div className="dashboard-content">
+      <div className="section-header">
+        <div>
+          <h2>Designers Management</h2>
+          <p>Manage interior designers and their performance</p>
+        </div>
+        <button className="add-btn">+ Add Designer</button>
+      </div>
+
+      <div className="filters-section">
+        <div className="search-bar">
+          <input
+            type="text"
+            placeholder="Search designers..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+        <div className="filter-controls">
+          <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)}>
+            <option value="All">All Status</option>
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+          </select>
+        </div>
+      </div>
+
+      <div className="enhanced-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Designer</th>
+              <th>Contact</th>
+              <th>Experience</th>
+              <th>Specialization</th>
+              <th>Rating</th>
+              <th>Projects</th>
+              <th>Wallet Balance</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredDesigners.map(designer => (
+              <tr key={designer.id} className="animate-fadeInUp">
+                <td>
+                  <div className="designer-info">
+                    <img src={designer.avatar} alt={designer.name} className="designer-avatar" />
+                    <div>
+                      <h5>{designer.name}</h5>
+                      <p>{designer.id}</p>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div>
+                    <p>{designer.phone}</p>
+                    <p>{designer.location}</p>
+                  </div>
+                </td>
+                <td>{designer.experience} years</td>
+                <td>{designer.specialization}</td>
+                <td>
+                  <div className="rating">
+                    <span>{designer.rating}⭐</span>
+                  </div>
+                </td>
+                <td>
+                  <div className="project-stats">
+                    <span className="active-projects">{designer.projects} active</span>
+                    <span className="completed-projects">{designer.completedProjects} completed</span>
+                  </div>
+                </td>
+                <td>₹{(designer.walletBalance / 1000).toFixed(0)}K</td>
+                <td>
+                  <span className={`status ${designer.status.toLowerCase()}`}>
+                    {designer.status}
+                  </span>
+                </td>
+                <td>
+                  <div className="action-buttons">
+                    <button className="action-btn view" title="View Portfolio">👁️</button>
+                    <button className="action-btn edit" title="Edit">✏️</button>
+                    <button className="action-btn wallet" title="Wallet">💰</button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
+// Reports Management Page
+function ReportsManagement() {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filterType, setFilterType] = useState('All');
+  const [filterStatus, setFilterStatus] = useState('All');
+
+  // Sample reports data based on the projects and customers data
+  const reportsData = [
+    {
+      id: 'RPT001',
+      name: 'Monthly Revenue Report',
+      type: 'Financial',
+      generatedDate: '2024-01-15',
+      status: 'Ready',
+      size: '2.3 MB',
+      requestedBy: 'Admin',
+      description: 'Comprehensive monthly revenue analysis'
+    },
+    {
+      id: 'RPT002',
+      name: 'Project Progress Summary',
+      type: 'Project',
+      generatedDate: '2024-01-14',
+      status: 'Ready',
+      size: '1.8 MB',
+      requestedBy: 'PM Manager',
+      description: 'All active projects status and progress'
+    },
+    {
+      id: 'RPT003',
+      name: 'Customer Satisfaction Survey',
+      type: 'Customer',
+      generatedDate: '2024-01-12',
+      status: 'Generating',
+      size: '-',
+      requestedBy: 'Admin',
+      description: 'Customer feedback and satisfaction metrics'
+    },
+    {
+      id: 'RPT004',
+      name: 'Designer Performance Analytics',
+      type: 'HR',
+      generatedDate: '2024-01-10',
+      status: 'Ready',
+      size: '3.1 MB',
+      requestedBy: 'HR Manager',
+      description: 'Designer productivity and performance metrics'
+    },
+    {
+      id: 'RPT005',
+      name: 'Material Cost Analysis',
+      type: 'Procurement',
+      generatedDate: '2024-01-08',
+      status: 'Ready',
+      size: '1.5 MB',
+      requestedBy: 'Procurement',
+      description: 'Material costs and supplier analysis'
+    },
+    {
+      id: 'RPT006',
+      name: 'Lead Conversion Report',
+      type: 'Sales',
+      generatedDate: '2024-01-05',
+      status: 'Failed',
+      size: '-',
+      requestedBy: 'Sales Manager',
+      description: 'Lead generation and conversion statistics'
+    }
+  ];
+
+  const filteredReports = reportsData.filter(report =>
+    report.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+    (filterType === 'All' || report.type === filterType) &&
+    (filterStatus === 'All' || report.status === filterStatus)
+  );
+
+  const getStatusBadge = (status) => {
+    const statusStyles = {
+      'Ready': 'status-completed',
+      'Generating': 'status-progress',
+      'Failed': 'status-cancelled'
+    };
+    return statusStyles[status] || 'status-pending';
+  };
+
+  return (
+    <div className="dashboard-content">
+      <div className="section-header">
+        <div>
+          <h2>Reports Management</h2>
+          <p>Generate, view and download business reports</p>
+        </div>
+        <button className="add-btn">+ Generate Report</button>
+      </div>
+
+      <div className="filters-section">
+        <div className="search-bar">
+          <input
+            type="text"
+            placeholder="Search reports..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+        <div className="filter-controls">
+          <select value={filterType} onChange={(e) => setFilterType(e.target.value)}>
+            <option value="All">All Types</option>
+            <option value="Financial">Financial</option>
+            <option value="Project">Project</option>
+            <option value="Customer">Customer</option>
+            <option value="HR">HR</option>
+            <option value="Procurement">Procurement</option>
+            <option value="Sales">Sales</option>
+          </select>
+          <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)}>
+            <option value="All">All Status</option>
+            <option value="Ready">Ready</option>
+            <option value="Generating">Generating</option>
+            <option value="Failed">Failed</option>
+          </select>
+        </div>
+      </div>
+
+      <div className="enhanced-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Report ID</th>
+              <th>Report Name</th>
+              <th>Type</th>
+              <th>Generated Date</th>
+              <th>Status</th>
+              <th>Size</th>
+              <th>Requested By</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredReports.map(report => (
+              <tr key={report.id}>
+                <td className="font-mono">{report.id}</td>
+                <td>
+                  <div>
+                    <strong>{report.name}</strong>
+                    <div className="text-gray">{report.description}</div>
+                  </div>
+                </td>
+                <td>
+                  <span className="type-badge">{report.type}</span>
+                </td>
+                <td>{report.generatedDate}</td>
+                <td>
+                  <span className={`status-badge ${getStatusBadge(report.status)}`}>
+                    {report.status}
+                  </span>
+                </td>
+                <td>{report.size}</td>
+                <td>{report.requestedBy}</td>
+                <td>
+                  <div className="action-buttons">
+                    {report.status === 'Ready' && (
+                      <>
+                        <button className="btn-view" title="View Report">👁️</button>
+                        <button className="btn-download" title="Download">⬇️</button>
+                      </>
+                    )}
+                    {report.status === 'Generating' && (
+                      <button className="btn-cancel" title="Cancel">❌</button>
+                    )}
+                    {report.status === 'Failed' && (
+                      <button className="btn-retry" title="Retry">🔄</button>
+                    )}
+                    <button className="btn-delete" title="Delete">🗑️</button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div className="table-footer">
+        <div className="results-info">
+          Showing {filteredReports.length} of {reportsData.length} reports
+        </div>
+        <div className="pagination">
+          <button disabled>Previous</button>
+          <span>Page 1 of 1</span>
+          <button disabled>Next</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Project Manager Dashboard Component
+function PMDashboard() {
+  const { user, logout } = useAuth();
+  const [activeTab, setActiveTab] = useState('dashboard');
+
+  const renderContent = () => {
+    switch(activeTab) {
+      case 'dashboard':
+        return <PMDashboardContent />;
+      case 'projects':
+        return <ProjectsManagement />;
+      case 'timeline':
+        return <ProjectTimeline />;
+      case 'resources':
+        return <ResourceManagement />;
+      case 'reports':
+        return <PMReports />;
+      default:
+        return <PMDashboardContent />;
+    }
+  };
+
+  return (
+    <div className="dashboard">
+      <div className="dashboard-header">
+        <div className="header-left">
+          <h2>Project Manager Dashboard</h2>
+          <p>Welcome back, {user.name}</p>
+        </div>
+        <div className="header-right">
+          <div className="user-info">
+            <img src={user.avatar} alt={user.name} className="avatar" />
+            <div className="user-details">
+              <span className="user-name">{user.name}</span>
+              <span className="user-role">{user.title}</span>
+            </div>
+            <button onClick={logout} className="logout-btn">Logout</button>
+          </div>
+        </div>
+      </div>
+
+      <div className="dashboard-layout">
+        <div className="sidebar">
+          <nav className="nav-menu">
+            <button 
+              className={activeTab === 'dashboard' ? 'active' : ''}
+              onClick={() => setActiveTab('dashboard')}
+            >
+              📊 Dashboard
+            </button>
+            <button 
+              className={activeTab === 'projects' ? 'active' : ''}
+              onClick={() => setActiveTab('projects')}
+            >
+              🏗️ Projects
+            </button>
+            <button 
+              className={activeTab === 'timeline' ? 'active' : ''}
+              onClick={() => setActiveTab('timeline')}
+            >
+              📅 Timeline
+            </button>
+            <button 
+              className={activeTab === 'resources' ? 'active' : ''}
+              onClick={() => setActiveTab('resources')}
+            >
+              👥 Resources
+            </button>
+            <button 
+              className={activeTab === 'reports' ? 'active' : ''}
+              onClick={() => setActiveTab('reports')}
+            >
+              📋 Reports
+            </button>
+          </nav>
+        </div>
+
+        <div className="main-content">
+          {renderContent()}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function PMDashboardContent() {
+  return (
+    <div className="dashboard-content">
+      <div className="kpi-cards">
+        <div className="kpi-card animate-slideInUp">
+          <div className="kpi-icon">🏗️</div>
+          <div className="kpi-details">
+            <h3>12</h3>
+            <p>Active Projects</p>
+            <span className="trend up">+2 this week</span>
+          </div>
+        </div>
+        <div className="kpi-card animate-slideInUp delay-1">
+          <div className="kpi-icon">✅</div>
+          <div className="kpi-details">
+            <h3>8</h3>
+            <p>Completed This Month</p>
+            <span className="trend up">+15% from last month</span>
+          </div>
+        </div>
+        <div className="kpi-card animate-slideInUp delay-2">
+          <div className="kpi-icon">👥</div>
+          <div className="kpi-details">
+            <h3>25</h3>
+            <p>Team Members</p>
+            <span className="trend neutral">Stable</span>
+          </div>
+        </div>
+        <div className="kpi-card animate-slideInUp delay-3">
+          <div className="kpi-icon">⏰</div>
+          <div className="kpi-details">
+            <h3>92%</h3>
+            <p>On-Time Delivery</p>
+            <span className="trend up">+5% this quarter</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="pm-main-content">
+        <h3>My Projects Overview</h3>
+        <div className="projects-overview">
+          {SAMPLE_DATA.projects.slice(0, 6).map(project => (
+            <div key={project.id} className="project-card animate-fadeInUp">
+              <div className="project-header">
+                <h4>{project.id}</h4>
+                <span className={`status ${project.status.toLowerCase().replace(' ', '-')}`}>
+                  {project.status}
+                </span>
+              </div>
+              <p><strong>Customer:</strong> {project.customerName}</p>
+              <p><strong>Designer:</strong> {project.designerName}</p>
+              <p><strong>Location:</strong> {project.location}</p>
+              <div className="progress-section">
+                <div className="progress-bar">
+                  <div className="progress-fill" style={{width: `${project.progress}%`}}></div>
+                </div>
+                <span>{project.progress}% Complete</span>
+              </div>
+              <div className="project-budget">
+                <span>Budget: ₹{(project.budget / 100000).toFixed(1)}L</span>
+                <span>Spent: ₹{(project.spent / 100000).toFixed(1)}L</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ProjectTimeline() {
+  return (
+    <div className="dashboard-content">
+      <h2>Project Timeline</h2>
+      <p>Track project milestones and deadlines</p>
+      <div className="timeline-placeholder">
+        <p>Timeline view will be implemented here</p>
+      </div>
+    </div>
+  );
+}
+
+function ResourceManagement() {
+  return (
+    <div className="dashboard-content">
+      <h2>Resource Management</h2>
+      <p>Manage team resources and allocations</p>
+      <div className="resource-placeholder">
+        <p>Resource management tools will be implemented here</p>
+      </div>
+    </div>
+  );
+}
+
+function PMReports() {
+  return (
+    <div className="dashboard-content">
+      <h2>PM Reports</h2>
+      <p>Project manager specific reports and analytics</p>
+      <div className="reports-placeholder">
+        <p>PM reports will be implemented here</p>
+      </div>
+    </div>
+  );
+}
+
+// Customer Portal Component
+function CustomerPortal() {
+  const { user, logout } = useAuth();
+  const [activeTab, setActiveTab] = useState('dashboard');
+
+  const renderContent = () => {
+    switch(activeTab) {
+      case 'dashboard':
+        return <CustomerDashboardContent />;
+      case 'projects':
+        return <CustomerProjects />;
+      case 'payments':
+        return <CustomerPayments />;
+      case 'support':
+        return <CustomerSupport />;
+      default:
+        return <CustomerDashboardContent />;
+    }
+  };
+
+  return (
+    <div className="dashboard">
+      <div className="dashboard-header">
+        <div className="header-left">
+          <h2>Customer Portal</h2>
+          <p>Welcome back, {user.name}</p>
+        </div>
+        <div className="header-right">
+          <div className="user-info">
+            <img src={user.avatar} alt={user.name} className="avatar" />
+            <div className="user-details">
+              <span className="user-name">{user.name}</span>
+              <span className="user-role">{user.title}</span>
+            </div>
+            <button onClick={logout} className="logout-btn">Logout</button>
+          </div>
+        </div>
+      </div>
+
+      <div className="dashboard-layout">
+        <div className="sidebar">
+          <nav className="nav-menu">
+            <button 
+              className={activeTab === 'dashboard' ? 'active' : ''}
+              onClick={() => setActiveTab('dashboard')}
+            >
+              🏠 Dashboard
+            </button>
+            <button 
+              className={activeTab === 'projects' ? 'active' : ''}
+              onClick={() => setActiveTab('projects')}
+            >
+              🏗️ My Projects
+            </button>
+            <button 
+              className={activeTab === 'payments' ? 'active' : ''}
+              onClick={() => setActiveTab('payments')}
+            >
+              💳 Payments
+            </button>
+            <button 
+              className={activeTab === 'support' ? 'active' : ''}
+              onClick={() => setActiveTab('support')}
+            >
+              🎧 Support
+            </button>
+          </nav>
+        </div>
+
+        <div className="main-content">
+          {renderContent()}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CustomerDashboardContent() {
+  return (
+    <div className="dashboard-content">
+      <h2>My Project Overview</h2>
+      <div className="customer-projects">
+        {SAMPLE_DATA.projects.filter(p => p.customerName === 'Sharma Family').map(project => (
+          <div key={project.id} className="customer-project-card">
+            <h3>{project.id} - Interior Design</h3>
+            <p><strong>Designer:</strong> {project.designerName}</p>
+            <p><strong>Status:</strong> {project.status}</p>
+            <div className="progress-bar">
+              <div className="progress-fill" style={{width: `${project.progress}%`}}></div>
+              <span>{project.progress}% Complete</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function CustomerProjects() {
+  return (
+    <div className="dashboard-content">
+      <h2>My Projects</h2>
+      <p>View detailed information about your interior design projects</p>
+    </div>
+  );
+}
+
+function CustomerPayments() {
+  return (
+    <div className="dashboard-content">
+      <h2>Payment History</h2>
+      <p>View your payment history and make new payments</p>
+    </div>
+  );
+}
+
+function CustomerSupport() {
+  return (
+    <div className="dashboard-content">
+      <h2>Customer Support</h2>
+      <p>Get help and support for your projects</p>
+    </div>
+  );
+}
+
+// Designer Portal Component
+function DesignerPortal() {
+  const { user, logout } = useAuth();
+  const [activeTab, setActiveTab] = useState('dashboard');
+
+  const renderContent = () => {
+    switch(activeTab) {
+      case 'dashboard':
+        return <DesignerDashboardContent />;
+      case 'leads':
+        return <DesignerLeads />;
+      case 'projects':
+        return <DesignerProjects />;
+      case 'portfolio':
+        return <DesignerPortfolio />;
+      case 'wallet':
+        return <DesignerWallet />;
+      default:
+        return <DesignerDashboardContent />;
+    }
+  };
+
+  return (
+    <div className="dashboard">
+      <div className="dashboard-header">
+        <div className="header-left">
+          <h2>Designer Portal</h2>
+          <p>Welcome back, {user.name}</p>
+        </div>
+        <div className="header-right">
+          <div className="user-info">
+            <img src={user.avatar} alt={user.name} className="avatar" />
+            <div className="user-details">
+              <span className="user-name">{user.name}</span>
+              <span className="user-role">{user.title}</span>
+            </div>
+            <button onClick={logout} className="logout-btn">Logout</button>
+          </div>
+        </div>
+      </div>
+
+      <div className="dashboard-layout">
+        <div className="sidebar">
+          <nav className="nav-menu">
+            <button 
+              className={activeTab === 'dashboard' ? 'active' : ''}
+              onClick={() => setActiveTab('dashboard')}
+            >
+              🎨 Dashboard
+            </button>
+            <button 
+              className={activeTab === 'leads' ? 'active' : ''}
+              onClick={() => setActiveTab('leads')}
+            >
+              📈 Leads
+            </button>
+            <button 
+              className={activeTab === 'projects' ? 'active' : ''}
+              onClick={() => setActiveTab('projects')}
+            >
+              🏗️ Projects
+            </button>
+            <button 
+              className={activeTab === 'portfolio' ? 'active' : ''}
+              onClick={() => setActiveTab('portfolio')}
+            >
+              📂 Portfolio
+            </button>
+            <button 
+              className={activeTab === 'wallet' ? 'active' : ''}
+              onClick={() => setActiveTab('wallet')}
+            >
+              💰 Wallet
+            </button>
+          </nav>
+        </div>
+
+        <div className="main-content">
+          {renderContent()}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function DesignerDashboardContent() {
+  return (
+    <div className="dashboard-content">
+      <h2>Designer Dashboard</h2>
+      <div className="designer-stats">
+        <div className="stat-card">
+          <h3>5</h3>
+          <p>Active Projects</p>
+        </div>
+        <div className="stat-card">
+          <h3>12</h3>
+          <p>New Leads</p>
+        </div>
+        <div className="stat-card">
+          <h3>₹85K</h3>
+          <p>This Month Earnings</p>
+        </div>
+        <div className="stat-card">
+          <h3>4.8⭐</h3>
+          <p>Rating</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function DesignerLeads() {
+  return (
+    <div className="dashboard-content">
+      <h2>My Leads</h2>
+      <p>Manage your leads and convert them to projects</p>
+    </div>
+  );
+}
+
+function DesignerProjects() {
+  return (
+    <div className="dashboard-content">
+      <h2>My Projects</h2>
+      <p>Track your current design projects</p>
+    </div>
+  );
+}
+
+function DesignerPortfolio() {
+  return (
+    <div className="dashboard-content">
+      <h2>My Portfolio</h2>
+      <p>Showcase your design work and achievements</p>
+    </div>
+  );
+}
+
+function DesignerWallet() {
+  return (
+    <div className="dashboard-content">
+      <h2>Digital Wallet</h2>
+      <p>Manage your earnings and payments</p>
+    </div>
+  );
+}
+
+// Procurement Portal Component
+function ProcurementPortal() {
+  const { user, logout } = useAuth();
+  const [activeTab, setActiveTab] = useState('dashboard');
+
+  const renderContent = () => {
+    switch(activeTab) {
+      case 'dashboard':
+        return <ProcurementDashboardContent />;
+      case 'inventory':
+        return <InventoryManagement />;
+      case 'vendors':
+        return <VendorManagement />;
+      case 'orders':
+        return <OrderManagement />;
+      default:
+        return <ProcurementDashboardContent />;
+    }
+  };
+
+  return (
+    <div className="dashboard">
+      <div className="dashboard-header">
+        <div className="header-left">
+          <h2>Procurement Portal</h2>
+          <p>Welcome back, {user.name}</p>
+        </div>
+        <div className="header-right">
+          <div className="user-info">
+            <img src={user.avatar} alt={user.name} className="avatar" />
+            <div className="user-details">
+              <span className="user-name">{user.name}</span>
+              <span className="user-role">{user.title}</span>
+            </div>
+            <button onClick={logout} className="logout-btn">Logout</button>
+          </div>
+        </div>
+      </div>
+
+      <div className="dashboard-layout">
+        <div className="sidebar">
+          <nav className="nav-menu">
+            <button 
+              className={activeTab === 'dashboard' ? 'active' : ''}
+              onClick={() => setActiveTab('dashboard')}
+            >
+              📦 Dashboard
+            </button>
+            <button 
+              className={activeTab === 'inventory' ? 'active' : ''}
+              onClick={() => setActiveTab('inventory')}
+            >
+              📋 Inventory
+            </button>
+            <button 
+              className={activeTab === 'vendors' ? 'active' : ''}
+              onClick={() => setActiveTab('vendors')}
+            >
+              🏢 Vendors
+            </button>
+            <button 
+              className={activeTab === 'orders' ? 'active' : ''}
+              onClick={() => setActiveTab('orders')}
+            >
+              🛒 Orders
+            </button>
+          </nav>
+        </div>
+
+        <div className="main-content">
+          {renderContent()}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ProcurementDashboardContent() {
+  return (
+    <div className="dashboard-content">
+      <h2>Procurement Overview</h2>
+      <div className="procurement-stats">
+        <div className="stat-card">
+          <h3>150</h3>
+          <p>Active Items</p>
+        </div>
+        <div className="stat-card">
+          <h3>25</h3>
+          <p>Pending Orders</p>
+        </div>
+        <div className="stat-card">
+          <h3>12</h3>
+          <p>Vendors</p>
+        </div>
+        <div className="stat-card">
+          <h3>₹2.5L</h3>
+          <p>Monthly Spend</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function InventoryManagement() {
+  return (
+    <div className="dashboard-content">
+      <h2>Inventory Management</h2>
+      <p>Manage materials and inventory levels</p>
+    </div>
+  );
+}
+
+function VendorManagement() {
+  return (
+    <div className="dashboard-content">
+      <h2>Vendor Management</h2>
+      <p>Manage suppliers and vendor relationships</p>
+    </div>
+  );
+}
+
+function OrderManagement() {
+  return (
+    <div className="dashboard-content">
+      <h2>Order Management</h2>
+      <p>Track and manage material orders</p>
+    </div>
+  );
+}
 
 // Main App Component (Enhanced)
 function App() {
