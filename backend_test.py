@@ -96,6 +96,26 @@ def test_cors():
         print(f"❌ CORS test failed: {str(e)}")
         return False
 
+def test_create_status_check_invalid():
+    """Test the POST /api/status endpoint with invalid data"""
+    print("\n=== Testing Create Status Check with Invalid Data ===")
+    try:
+        # Missing required field client_name
+        payload = {}
+        
+        response = requests.post(f"{BACKEND_URL}/status", json=payload)
+        print(f"Status Code: {response.status_code}")
+        print(f"Response: {response.json()}")
+        
+        assert response.status_code == 422, f"Expected status code 422, got {response.status_code}"
+        assert "detail" in response.json(), "Response missing 'detail' field for validation error"
+        
+        print("✅ Create status check with invalid data test passed!")
+        return True
+    except Exception as e:
+        print(f"❌ Create status check with invalid data test failed: {str(e)}")
+        return False
+
 def run_all_tests():
     """Run all tests and return overall status"""
     print("\n🔍 Starting Backend API Tests")
@@ -113,10 +133,11 @@ def run_all_tests():
     root_test = test_root_endpoint()
     create_test, created_id = test_create_status_check()
     get_test = test_get_status_checks(created_id)
+    invalid_test = test_create_status_check_invalid()
     cors_test = test_cors()
     
     # Overall status
-    all_passed = root_test and create_test and get_test and cors_test
+    all_passed = root_test and create_test and get_test and invalid_test and cors_test
     
     if all_passed:
         print("\n✅ All backend API tests passed successfully!")
