@@ -63,7 +63,7 @@ const SAMPLE_USERS = {
   }
 };
 
-// Comprehensive Sample Data
+// Enhanced Sample Data with Premium Images
 const SAMPLE_DATA = {
   customers: [
     { id: 'CUST001', name: 'Sharma Family', email: 'sharma.family@gmail.com', phone: '+91-9999999999', location: 'Mumbai, Maharashtra', projects: 2, totalSpent: 850000, status: 'Active', registrationDate: '2023-12-01', propertyType: '3BHK Apartment', budget: '5-8L' },
@@ -150,6 +150,76 @@ const SAMPLE_DATA = {
       image: 'https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg',
       price: 'Starting from ₹75,000'
     }
+  ],
+
+  // New high-quality portfolio items with our curated images
+  portfolioItems: [
+    { 
+      id: 'PORT001', 
+      title: 'Luxury Living Room', 
+      category: 'Living Room', 
+      image: 'https://images.unsplash.com/photo-1572525621554-9013384b1d36',
+      description: 'Modern luxury living room with blue accents and contemporary furniture',
+      location: 'Mumbai',
+      area: '450 sq ft',
+      budget: '₹3.5L',
+      designer: 'Priya Mehta'
+    },
+    { 
+      id: 'PORT002', 
+      title: 'Sophisticated City View Living', 
+      category: 'Living Room', 
+      image: 'https://images.unsplash.com/photo-1721301856929-1f983c06bae7',
+      description: 'Elegant living space with panoramic city views and minimalist design',
+      location: 'Delhi',
+      area: '600 sq ft',
+      budget: '₹4.2L',
+      designer: 'Anita Sharma'
+    },
+    { 
+      id: 'PORT003', 
+      title: 'Contemporary Kitchen Design', 
+      category: 'Kitchen', 
+      image: 'https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg',
+      description: 'Spacious white kitchen with modern appliances and functional island',
+      location: 'Bangalore',
+      area: '200 sq ft',
+      budget: '₹2.8L',
+      designer: 'Rohit Desai'
+    },
+    { 
+      id: 'PORT004', 
+      title: 'Minimalist Bedroom Retreat', 
+      category: 'Bedroom', 
+      image: 'https://images.unsplash.com/photo-1633944095397-878622ebc01c',
+      description: 'Serene bedroom with clean lines and neutral color palette',
+      location: 'Chennai',
+      area: '300 sq ft',
+      budget: '₹2.2L',
+      designer: 'Kavya Nair'
+    },
+    { 
+      id: 'PORT005', 
+      title: 'Elegant Bedroom Suite', 
+      category: 'Bedroom', 
+      image: 'https://images.unsplash.com/photo-1631048501851-4aa85ffc3be8',
+      description: 'Luxurious bedroom with sophisticated neutral tones and premium finishes',
+      location: 'Pune',
+      area: '350 sq ft',
+      budget: '₹3.1L',
+      designer: 'Suresh Gupta'
+    },
+    { 
+      id: 'PORT006', 
+      title: 'Modern Home Interior', 
+      category: 'Living Room', 
+      image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7',
+      description: 'Bright and airy living space with stylish furniture and natural light',
+      location: 'Hyderabad',
+      area: '500 sq ft',
+      budget: '₹3.8L',
+      designer: 'Priya Mehta'
+    }
   ]
 };
 
@@ -220,42 +290,45 @@ function LandingPage() {
 
   return (
     <div className="landing-page">
-      {/* Enhanced Header */}
-      <header className="header">
+      {/* Enhanced Header with Glass Effect */}
+      <header className="header glass-morphism">
         <div className="container">
           <div className="nav">
             <div className="logo">
-              <h2>Gharinto</h2>
-              <span className="tagline">Interior Excellence</span>
+              <div className="logo-icon">🏠</div>
+              <div className="logo-text">
+                <h2>Gharinto</h2>
+                <span className="tagline">Interior Excellence</span>
+              </div>
             </div>
             
             <nav className={`nav-menu ${mobileMenuOpen ? 'mobile-open' : ''}`}>
               <button 
-                className={currentPage === 'home' ? 'active' : ''}
+                className={`nav-item ${currentPage === 'home' ? 'active' : ''}`}
                 onClick={() => { setCurrentPage('home'); setMobileMenuOpen(false); }}
               >
                 Home
               </button>
               <button 
-                className={currentPage === 'about' ? 'active' : ''}
+                className={`nav-item ${currentPage === 'about' ? 'active' : ''}`}
                 onClick={() => { setCurrentPage('about'); setMobileMenuOpen(false); }}
               >
                 About
               </button>
               <button 
-                className={currentPage === 'services' ? 'active' : ''}
+                className={`nav-item ${currentPage === 'services' ? 'active' : ''}`}
                 onClick={() => { setCurrentPage('services'); setMobileMenuOpen(false); }}
               >
                 Services
               </button>
               <button 
-                className={currentPage === 'portfolio' ? 'active' : ''}
+                className={`nav-item ${currentPage === 'portfolio' ? 'active' : ''}`}
                 onClick={() => { setCurrentPage('portfolio'); setMobileMenuOpen(false); }}
               >
                 Portfolio
               </button>
               <button 
-                className={currentPage === 'contact' ? 'active' : ''}
+                className={`nav-item ${currentPage === 'contact' ? 'active' : ''}`}
                 onClick={() => { setCurrentPage('contact'); setMobileMenuOpen(false); }}
               >
                 Contact
@@ -264,16 +337,19 @@ function LandingPage() {
 
             <div className="header-actions">
               <button 
-                className="login-btn"
+                className="login-btn gradient-btn"
                 onClick={() => setShowLogin(true)}
               >
-                Login
+                <span>Login</span>
+                <div className="btn-glow"></div>
               </button>
               <button 
                 className="mobile-menu-toggle"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               >
-                ☰
+                <span></span>
+                <span></span>
+                <span></span>
               </button>
             </div>
           </div>
@@ -288,43 +364,79 @@ function LandingPage() {
         <div className="container">
           <div className="footer-content">
             <div className="footer-section">
-              <h3>Gharinto</h3>
+              <div className="footer-logo">
+                <div className="logo-icon">🏠</div>
+                <h3>Gharinto</h3>
+              </div>
               <p>Transforming spaces with innovative interior design solutions. Your dream home is just a click away.</p>
               <div className="social-links">
-                <button className="social-btn">📘</button>
-                <button className="social-btn">📸</button>
-                <button className="social-btn">🐦</button>
-                <button className="social-btn">💼</button>
+                <a href="#" className="social-btn facebook">
+                  <i className="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" className="social-btn instagram">
+                  <i className="fab fa-instagram"></i>
+                </a>
+                <a href="#" className="social-btn twitter">
+                  <i className="fab fa-twitter"></i>
+                </a>
+                <a href="#" className="social-btn linkedin">
+                  <i className="fab fa-linkedin-in"></i>
+                </a>
               </div>
             </div>
             
             <div className="footer-section">
               <h4>Quick Links</h4>
-              <button onClick={() => setCurrentPage('home')}>Home</button>
-              <button onClick={() => setCurrentPage('about')}>About Us</button>
-              <button onClick={() => setCurrentPage('services')}>Services</button>
-              <button onClick={() => setCurrentPage('portfolio')}>Portfolio</button>
+              <ul>
+                <li><button onClick={() => setCurrentPage('home')}>Home</button></li>
+                <li><button onClick={() => setCurrentPage('about')}>About Us</button></li>
+                <li><button onClick={() => setCurrentPage('services')}>Services</button></li>
+                <li><button onClick={() => setCurrentPage('portfolio')}>Portfolio</button></li>
+              </ul>
             </div>
             
             <div className="footer-section">
               <h4>Services</h4>
-              <p>Residential Design</p>
-              <p>Commercial Spaces</p>
-              <p>Kitchen & Bathroom</p>
-              <p>Project Management</p>
+              <ul>
+                <li>Residential Design</li>
+                <li>Commercial Spaces</li>
+                <li>Kitchen & Bathroom</li>
+                <li>Project Management</li>
+              </ul>
             </div>
             
             <div className="footer-section">
               <h4>Contact Info</h4>
-              <p>📧 info@gharinto.com</p>
-              <p>📞 +91-9876543210</p>
-              <p>📍 Mumbai, Maharashtra</p>
-              <p>🕒 Mon-Sat: 9AM-7PM</p>
+              <div className="contact-info">
+                <div className="contact-item">
+                  <i className="fas fa-envelope"></i>
+                  <span>info@gharinto.com</span>
+                </div>
+                <div className="contact-item">
+                  <i className="fas fa-phone"></i>
+                  <span>+91-9876543210</span>
+                </div>
+                <div className="contact-item">
+                  <i className="fas fa-map-marker-alt"></i>
+                  <span>Mumbai, Maharashtra</span>
+                </div>
+                <div className="contact-item">
+                  <i className="fas fa-clock"></i>
+                  <span>Mon-Sat: 9AM-7PM</span>
+                </div>
+              </div>
             </div>
           </div>
           
           <div className="footer-bottom">
-            <p>&copy; 2024 Gharinto. All rights reserved. | Privacy Policy | Terms of Service</p>
+            <div className="footer-bottom-content">
+              <p>&copy; 2024 Gharinto. All rights reserved.</p>
+              <div className="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Cookie Policy</a>
+              </div>
+            </div>
           </div>
         </div>
       </footer>
@@ -335,51 +447,148 @@ function LandingPage() {
   );
 }
 
-// Home Page Component
+// Enhanced Home Page Component
 function HomePage({ setShowLogin }) {
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [isVisible, setIsVisible] = useState({});
+
+  const testimonials = [
+    {
+      id: 1,
+      name: "Priya Sharma",
+      role: "Homeowner",
+      location: "Mumbai",
+      rating: 5,
+      text: "Gharinto transformed our home beyond our expectations. The process was smooth, transparent, and the final result was absolutely stunning!",
+      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=60&h=60&fit=crop&crop=face"
+    },
+    {
+      id: 2,
+      name: "Meera Patel",
+      role: "Interior Designer",
+      location: "Delhi",
+      rating: 5,
+      text: "The designer portal helped me grow my business by 300%. The lead management and digital wallet features are game-changers!",
+      image: "https://images.unsplash.com/photo-1494790108755-2616b2a90000?w=60&h=60&fit=crop&crop=face"
+    },
+    {
+      id: 3,
+      name: "Amit Kumar",
+      role: "Project Manager",
+      location: "Bangalore",
+      rating: 5,
+      text: "As a project manager, Gharinto's tools have made my job so much easier. Everything is organized and client communication is seamless.",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop&crop=face"
+    }
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setIsVisible(prev => ({ ...prev, [entry.target.id]: true }));
+        }
+      });
+    }, observerOptions);
+
+    // Observe all sections
+    const sections = document.querySelectorAll('[data-animate]');
+    sections.forEach(section => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
       {/* Enhanced Hero Section */}
-      <section className="hero">
+      <section className="hero" id="hero" data-animate>
+        <div className="hero-background">
+          <div className="hero-bg-image">
+            <img src="https://images.unsplash.com/photo-1572525621554-9013384b1d36" alt="Luxury Interior" />
+            <div className="hero-overlay"></div>
+          </div>
+          <div className="floating-elements">
+            <div className="floating-element element-1"></div>
+            <div className="floating-element element-2"></div>
+            <div className="floating-element element-3"></div>
+          </div>
+        </div>
+        
         <div className="container">
           <div className="hero-content">
-            <div className="hero-text">
-              <h1 className="animate-fadeInUp">Transform Your Space with <span>Gharinto</span></h1>
-              <p className="animate-fadeInUp delay-1">The complete interior design platform connecting builders, designers, customers, and suppliers for seamless project execution.</p>
-              <div className="hero-stats animate-fadeInUp delay-2">
+            <div className={`hero-text ${isVisible.hero ? 'animate-in' : ''}`}>
+              <h1 className="hero-title">
+                Transform Your Space with 
+                <span className="gradient-text"> Gharinto</span>
+              </h1>
+              <p className="hero-subtitle">
+                The complete interior design platform connecting builders, designers, customers, and suppliers for seamless project execution.
+              </p>
+              
+              <div className="hero-stats">
                 <div className="stat-item">
-                  <h3>500+</h3>
-                  <p>Projects Completed</p>
+                  <div className="stat-number">500+</div>
+                  <div className="stat-label">Projects Completed</div>
                 </div>
                 <div className="stat-item">
-                  <h3>1000+</h3>
-                  <p>Happy Customers</p>
+                  <div className="stat-number">1000+</div>
+                  <div className="stat-label">Happy Customers</div>
                 </div>
                 <div className="stat-item">
-                  <h3>50+</h3>
-                  <p>Expert Designers</p>
+                  <div className="stat-number">50+</div>
+                  <div className="stat-label">Expert Designers</div>
                 </div>
               </div>
-              <div className="hero-buttons animate-fadeInUp delay-3">
+              
+              <div className="hero-actions">
                 <button 
-                  className="cta-primary"
+                  className="cta-primary gradient-btn"
                   onClick={() => setShowLogin(true)}
                 >
-                  Get Started Today
+                  <span>Get Started Today</span>
+                  <div className="btn-glow"></div>
                 </button>
-                <button className="cta-secondary">Watch Demo</button>
+                <button className="cta-secondary">
+                  <span>Watch Demo</span>
+                  <i className="fas fa-play"></i>
+                </button>
               </div>
             </div>
-            <div className="hero-image animate-fadeInRight">
-              <img 
-                src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg" 
-                alt="Modern Interior Design"
-              />
-              <div className="floating-card">
-                <div className="card-icon">🎨</div>
-                <div>
-                  <h4>Professional Design</h4>
-                  <p>Expert interior solutions</p>
+            
+            <div className="hero-visual">
+              <div className="hero-cards">
+                <div className="floating-card card-1">
+                  <div className="card-icon">🎨</div>
+                  <div className="card-content">
+                    <h4>Professional Design</h4>
+                    <p>Expert interior solutions</p>
+                  </div>
+                </div>
+                <div className="floating-card card-2">
+                  <div className="card-icon">📊</div>
+                  <div className="card-content">
+                    <h4>Project Management</h4>
+                    <p>Seamless execution</p>
+                  </div>
+                </div>
+                <div className="floating-card card-3">
+                  <div className="card-icon">⚡</div>
+                  <div className="card-content">
+                    <h4>Fast Delivery</h4>
+                    <p>On-time completion</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -388,149 +597,249 @@ function HomePage({ setShowLogin }) {
       </section>
 
       {/* Enhanced Features Section */}
-      <section className="features">
+      <section className="features modern-section" id="features" data-animate>
         <div className="container">
-          <div className="section-header animate-fadeInUp">
-            <h2>Complete Interior Design Ecosystem</h2>
-            <p>Everything you need for your dream interior in one platform</p>
+          <div className={`section-header ${isVisible.features ? 'animate-in' : ''}`}>
+            <h2 className="section-title">Complete Interior Design Ecosystem</h2>
+            <p className="section-subtitle">Everything you need for your dream interior in one platform</p>
           </div>
+          
           <div className="features-grid">
-            <div className="feature-card animate-fadeInUp delay-1">
-              <div className="feature-icon">👥</div>
-              <h3>For Customers</h3>
-              <p>Track your project progress, view designs, make payments, and communicate with your team seamlessly.</p>
-              <ul>
-                <li>✓ Real-time project tracking</li>
-                <li>✓ 3D design visualization</li>
-                <li>✓ Secure payment gateway</li>
-                <li>✓ Direct team communication</li>
+            <div className="feature-card premium-card">
+              <div className="card-header">
+                <div className="feature-icon customers">
+                  <i className="fas fa-users"></i>
+                </div>
+                <h3>For Customers</h3>
+              </div>
+              <p className="card-description">
+                Track your project progress, view designs, make payments, and communicate with your team seamlessly.
+              </p>
+              <ul className="feature-list">
+                <li><i className="fas fa-check"></i> Real-time project tracking</li>
+                <li><i className="fas fa-check"></i> 3D design visualization</li>
+                <li><i className="fas fa-check"></i> Secure payment gateway</li>
+                <li><i className="fas fa-check"></i> Direct team communication</li>
               </ul>
-              <button className="feature-btn">Learn More</button>
+              <button className="feature-btn">
+                <span>Learn More</span>
+                <i className="fas fa-arrow-right"></i>
+              </button>
             </div>
-            <div className="feature-card animate-fadeInUp delay-2">
-              <div className="feature-icon">🎨</div>
-              <h3>For Designers</h3>
-              <p>Manage leads, create BOQs, track projects, and grow your business with our designer portal.</p>
-              <ul>
-                <li>✓ Lead management system</li>
-                <li>✓ Digital wallet & payments</li>
-                <li>✓ BOQ builder tools</li>
-                <li>✓ Portfolio showcase</li>
+            
+            <div className="feature-card premium-card">
+              <div className="card-header">
+                <div className="feature-icon designers">
+                  <i className="fas fa-paint-brush"></i>
+                </div>
+                <h3>For Designers</h3>
+              </div>
+              <p className="card-description">
+                Manage leads, create BOQs, track projects, and grow your business with our designer portal.
+              </p>
+              <ul className="feature-list">
+                <li><i className="fas fa-check"></i> Lead management system</li>
+                <li><i className="fas fa-check"></i> Digital wallet & payments</li>
+                <li><i className="fas fa-check"></i> BOQ builder tools</li>
+                <li><i className="fas fa-check"></i> Portfolio showcase</li>
               </ul>
-              <button className="feature-btn">Join Network</button>
+              <button className="feature-btn">
+                <span>Join Network</span>
+                <i className="fas fa-arrow-right"></i>
+              </button>
             </div>
-            <div className="feature-card animate-fadeInUp delay-3">
-              <div className="feature-icon">📊</div>
-              <h3>For Managers</h3>
-              <p>Monitor projects, manage teams, track progress, and ensure timely delivery with powerful tools.</p>
-              <ul>
-                <li>✓ Project management dashboard</li>
-                <li>✓ Team coordination tools</li>
-                <li>✓ Progress monitoring</li>
-                <li>✓ Resource allocation</li>
+            
+            <div className="feature-card premium-card">
+              <div className="card-header">
+                <div className="feature-icon managers">
+                  <i className="fas fa-chart-line"></i>
+                </div>
+                <h3>For Managers</h3>
+              </div>
+              <p className="card-description">
+                Monitor projects, manage teams, track progress, and ensure timely delivery with powerful tools.
+              </p>
+              <ul className="feature-list">
+                <li><i className="fas fa-check"></i> Project management dashboard</li>
+                <li><i className="fas fa-check"></i> Team coordination tools</li>
+                <li><i className="fas fa-check"></i> Progress monitoring</li>
+                <li><i className="fas fa-check"></i> Resource allocation</li>
               </ul>
-              <button className="feature-btn">Explore Tools</button>
+              <button className="feature-btn">
+                <span>Explore Tools</span>
+                <i className="fas fa-arrow-right"></i>
+              </button>
             </div>
-            <div className="feature-card animate-fadeInUp delay-4">
-              <div className="feature-icon">📦</div>
-              <h3>For Procurement</h3>
-              <p>Manage inventory, track vendors, handle logistics, and streamline material procurement.</p>
-              <ul>
-                <li>✓ Inventory management</li>
-                <li>✓ Vendor network</li>
-                <li>✓ Order tracking</li>
-                <li>✓ Quality assurance</li>
+            
+            <div className="feature-card premium-card">
+              <div className="card-header">
+                <div className="feature-icon procurement">
+                  <i className="fas fa-boxes"></i>
+                </div>
+                <h3>For Procurement</h3>
+              </div>
+              <p className="card-description">
+                Manage inventory, track vendors, handle logistics, and streamline material procurement.
+              </p>
+              <ul className="feature-list">
+                <li><i className="fas fa-check"></i> Inventory management</li>
+                <li><i className="fas fa-check"></i> Vendor network</li>
+                <li><i className="fas fa-check"></i> Order tracking</li>
+                <li><i className="fas fa-check"></i> Quality assurance</li>
               </ul>
-              <button className="feature-btn">Get Started</button>
+              <button className="feature-btn">
+                <span>Get Started</span>
+                <i className="fas fa-arrow-right"></i>
+              </button>
             </div>
           </div>
         </div>
       </section>
 
       {/* Enhanced Portfolio Preview */}
-      <section className="portfolio-preview">
+      <section className="portfolio-preview modern-section" id="portfolio" data-animate>
         <div className="container">
-          <div className="section-header animate-fadeInUp">
-            <h2>Our Recent Works</h2>
-            <p>Discover stunning transformations by our expert designers</p>
+          <div className={`section-header ${isVisible.portfolio ? 'animate-in' : ''}`}>
+            <h2 className="section-title">Our Recent Works</h2>
+            <p className="section-subtitle">Discover stunning transformations by our expert designers</p>
           </div>
+          
           <div className="portfolio-grid">
-            <div className="portfolio-item animate-fadeInUp delay-1">
-              <img src="https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg" alt="Modern Kitchen" />
-              <div className="portfolio-overlay">
-                <h4>Modern Kitchen Design</h4>
-                <p>Contemporary style • Mumbai</p>
-                <button className="view-btn">View Details</button>
+            {SAMPLE_DATA.portfolioItems.slice(0, 6).map((item, index) => (
+              <div key={item.id} className="portfolio-item premium-card">
+                <div className="portfolio-image">
+                  <img src={item.image} alt={item.title} />
+                  <div className="portfolio-overlay">
+                    <div className="portfolio-info">
+                      <h4>{item.title}</h4>
+                      <p className="portfolio-category">{item.category}</p>
+                      <p className="portfolio-location">{item.location}</p>
+                      <div className="portfolio-details">
+                        <span className="portfolio-area">{item.area}</span>
+                        <span className="portfolio-budget">{item.budget}</span>
+                      </div>
+                    </div>
+                    <button className="view-btn">
+                      <i className="fas fa-eye"></i>
+                      <span>View Details</span>
+                    </button>
+                  </div>
+                </div>
+                <div className="portfolio-content">
+                  <div className="portfolio-designer">
+                    <i className="fas fa-user-tie"></i>
+                    <span>by {item.designer}</span>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className="portfolio-item animate-fadeInUp delay-2">
-              <img src="https://images.pexels.com/photos/1454804/pexels-photo-1454804.jpeg" alt="Luxury Bathroom" />
-              <div className="portfolio-overlay">
-                <h4>Luxury Bathroom</h4>
-                <p>Premium style • Delhi</p>
-                <button className="view-btn">View Details</button>
-              </div>
-            </div>
-            <div className="portfolio-item animate-fadeInUp delay-3">
-              <img src="https://images.pexels.com/photos/3356416/pexels-photo-3356416.jpeg" alt="Dining Area" />
-              <div className="portfolio-overlay">
-                <h4>Elegant Dining Area</h4>
-                <p>Classic style • Pune</p>
-                <button className="view-btn">View Details</button>
-              </div>
-            </div>
+            ))}
           </div>
-          <div className="text-center animate-fadeInUp delay-4">
-            <button className="cta-secondary">View Full Portfolio</button>
+          
+          <div className="text-center">
+            <button className="cta-secondary">
+              <span>View Full Portfolio</span>
+              <i className="fas fa-arrow-right"></i>
+            </button>
           </div>
         </div>
       </section>
 
       {/* Enhanced Testimonials */}
-      <section className="testimonials">
+      <section className="testimonials modern-section" id="testimonials" data-animate>
         <div className="container">
-          <div className="section-header animate-fadeInUp">
-            <h2>What Our Clients Say</h2>
-            <p>Real stories from satisfied customers</p>
+          <div className={`section-header ${isVisible.testimonials ? 'animate-in' : ''}`}>
+            <h2 className="section-title">What Our Clients Say</h2>
+            <p className="section-subtitle">Real stories from satisfied customers</p>
           </div>
-          <div className="testimonials-grid">
-            <div className="testimonial animate-fadeInUp delay-1">
-              <div className="testimonial-content">
-                <div className="stars">⭐⭐⭐⭐⭐</div>
-                <p>"Gharinto transformed our home beyond our expectations. The process was smooth, transparent, and the final result was absolutely stunning!"</p>
-                <div className="testimonial-author">
-                  <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=60&h=60&fit=crop&crop=face" alt="Customer" />
-                  <div>
-                    <h4>Priya Sharma</h4>
-                    <p>Mumbai • 3BHK Apartment</p>
+          
+          <div className="testimonial-carousel">
+            <div className="testimonial-container">
+              {testimonials.map((testimonial, index) => (
+                <div 
+                  key={testimonial.id}
+                  className={`testimonial-slide ${index === currentTestimonial ? 'active' : ''}`}
+                >
+                  <div className="testimonial-content">
+                    <div className="testimonial-header">
+                      <div className="testimonial-avatar">
+                        <img src={testimonial.image} alt={testimonial.name} />
+                      </div>
+                      <div className="testimonial-info">
+                        <h4>{testimonial.name}</h4>
+                        <p>{testimonial.role}</p>
+                        <span className="testimonial-location">{testimonial.location}</span>
+                      </div>
+                    </div>
+                    <div className="testimonial-rating">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <i key={i} className="fas fa-star"></i>
+                      ))}
+                    </div>
+                    <p className="testimonial-text">"{testimonial.text}"</p>
                   </div>
                 </div>
+              ))}
+            </div>
+            
+            <div className="testimonial-controls">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  className={`testimonial-dot ${index === currentTestimonial ? 'active' : ''}`}
+                  onClick={() => setCurrentTestimonial(index)}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Process Section */}
+      <section className="process modern-section" id="process" data-animate>
+        <div className="container">
+          <div className={`section-header ${isVisible.process ? 'animate-in' : ''}`}>
+            <h2 className="section-title">Our Design Process</h2>
+            <p className="section-subtitle">From concept to completion, we ensure every detail is perfect</p>
+          </div>
+          
+          <div className="process-timeline">
+            <div className="process-step">
+              <div className="step-number">01</div>
+              <div className="step-content">
+                <h3>Consultation</h3>
+                <p>We start with understanding your vision, requirements, and budget to create a personalized design plan.</p>
               </div>
             </div>
-            <div className="testimonial animate-fadeInUp delay-2">
-              <div className="testimonial-content">
-                <div className="stars">⭐⭐⭐⭐⭐</div>
-                <p>"The designer portal helped me grow my business by 300%. The lead management and digital wallet features are game-changers!"</p>
-                <div className="testimonial-author">
-                  <img src="https://images.unsplash.com/photo-1494790108755-2616b2a90000?w=60&h=60&fit=crop&crop=face" alt="Designer" />
-                  <div>
-                    <h4>Meera Patel</h4>
-                    <p>Interior Designer • 5 Years</p>
-                  </div>
-                </div>
+            
+            <div className="process-step">
+              <div className="step-number">02</div>
+              <div className="step-content">
+                <h3>Design & Planning</h3>
+                <p>Our expert designers create detailed 3D visualizations and comprehensive project plans.</p>
               </div>
             </div>
-            <div className="testimonial animate-fadeInUp delay-3">
-              <div className="testimonial-content">
-                <div className="stars">⭐⭐⭐⭐⭐</div>
-                <p>"As a project manager, Gharinto's tools have made my job so much easier. Everything is organized and client communication is seamless."</p>
-                <div className="testimonial-author">
-                  <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop&crop=face" alt="PM" />
-                  <div>
-                    <h4>Amit Kumar</h4>
-                    <p>Project Manager • 15+ Projects</p>
-                  </div>
-                </div>
+            
+            <div className="process-step">
+              <div className="step-number">03</div>
+              <div className="step-content">
+                <h3>Material Selection</h3>
+                <p>Choose from our curated collection of premium materials and furnishings that match your style.</p>
+              </div>
+            </div>
+            
+            <div className="process-step">
+              <div className="step-number">04</div>
+              <div className="step-content">
+                <h3>Execution</h3>
+                <p>Our skilled craftsmen bring your design to life with precision and attention to detail.</p>
+              </div>
+            </div>
+            
+            <div className="process-step">
+              <div className="step-number">05</div>
+              <div className="step-content">
+                <h3>Handover</h3>
+                <p>Final quality checks and walkthrough to ensure your complete satisfaction with the transformation.</p>
               </div>
             </div>
           </div>
@@ -538,19 +847,26 @@ function HomePage({ setShowLogin }) {
       </section>
 
       {/* Call to Action */}
-      <section className="cta-section">
+      <section className="cta-section modern-section" id="cta" data-animate>
+        <div className="cta-background">
+          <div className="cta-pattern"></div>
+        </div>
         <div className="container">
-          <div className="cta-content animate-fadeInUp">
+          <div className={`cta-content ${isVisible.cta ? 'animate-in' : ''}`}>
             <h2>Ready to Transform Your Space?</h2>
             <p>Join thousands of satisfied customers who chose Gharinto for their interior design needs</p>
             <div className="cta-buttons">
               <button 
-                className="cta-primary"
+                className="cta-primary gradient-btn"
                 onClick={() => setShowLogin(true)}
               >
-                Start Your Project
+                <span>Start Your Project</span>
+                <div className="btn-glow"></div>
               </button>
-              <button className="cta-secondary">Schedule Consultation</button>
+              <button className="cta-secondary">
+                <span>Schedule Consultation</span>
+                <i className="fas fa-calendar-alt"></i>
+              </button>
             </div>
           </div>
         </div>
@@ -559,18 +875,24 @@ function HomePage({ setShowLogin }) {
   );
 }
 
-// About Page Component
+// Enhanced About Page Component
 function AboutPage() {
   return (
     <div className="page-content">
-      <section className="page-hero">
+      <section className="page-hero about-hero">
+        <div className="hero-background">
+          <img src="https://images.pexels.com/photos/5922204/pexels-photo-5922204.jpeg" alt="About Us" />
+          <div className="hero-overlay"></div>
+        </div>
         <div className="container">
-          <h1 className="animate-fadeInUp">About Gharinto</h1>
-          <p className="animate-fadeInUp delay-1">Revolutionizing interior design with technology and expertise</p>
+          <div className="hero-content">
+            <h1 className="animate-fadeInUp">About Gharinto</h1>
+            <p className="animate-fadeInUp delay-1">Revolutionizing interior design with technology and expertise</p>
+          </div>
         </div>
       </section>
 
-      <section className="about-story">
+      <section className="about-story modern-section">
         <div className="container">
           <div className="story-content">
             <div className="story-text animate-fadeInLeft">
@@ -590,103 +912,226 @@ function AboutPage() {
                   <h3>1000+</h3>
                   <p>Happy Customers</p>
                 </div>
+                <div className="achievement">
+                  <h3>98%</h3>
+                  <p>Satisfaction Rate</p>
+                </div>
               </div>
             </div>
             <div className="story-image animate-fadeInRight">
-              <img src="https://images.pexels.com/photos/5922204/pexels-photo-5922204.jpeg" alt="Our Team" />
+              <img src="https://images.unsplash.com/photo-1716703373020-17ff360924ee" alt="Our Team" />
             </div>
           </div>
         </div>
       </section>
 
-      <section className="team-section">
+      <section className="team-section modern-section">
         <div className="container">
-          <h2 className="text-center animate-fadeInUp">Meet Our Team</h2>
+          <div className="section-header">
+            <h2 className="section-title">Meet Our Team</h2>
+            <p className="section-subtitle">The creative minds behind Gharinto's success</p>
+          </div>
           <div className="team-grid">
             {SAMPLE_DATA.teamMembers.map((member, index) => (
-              <div key={index} className={`team-card animate-fadeInUp delay-${index + 1}`}>
-                <img src={member.image} alt={member.name} />
-                <h3>{member.name}</h3>
-                <p className="role">{member.role}</p>
-                <p className="bio">{member.bio}</p>
+              <div key={index} className={`team-card premium-card animate-fadeInUp delay-${index + 1}`}>
+                <div className="team-image">
+                  <img src={member.image} alt={member.name} />
+                  <div className="team-overlay">
+                    <div className="social-links">
+                      <a href="#" className="social-link">
+                        <i className="fab fa-linkedin-in"></i>
+                      </a>
+                      <a href="#" className="social-link">
+                        <i className="fab fa-twitter"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div className="team-content">
+                  <h3>{member.name}</h3>
+                  <p className="team-role">{member.role}</p>
+                  <p className="team-bio">{member.bio}</p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
+
+      <section className="values-section modern-section">
+        <div className="container">
+          <div className="section-header">
+            <h2 className="section-title">Our Values</h2>
+            <p className="section-subtitle">What drives us to deliver excellence</p>
+          </div>
+          <div className="values-grid">
+            <div className="value-card premium-card">
+              <div className="value-icon">
+                <i className="fas fa-lightbulb"></i>
+              </div>
+              <h3>Innovation</h3>
+              <p>We continuously innovate to provide cutting-edge design solutions and seamless user experiences.</p>
+            </div>
+            <div className="value-card premium-card">
+              <div className="value-icon">
+                <i className="fas fa-award"></i>
+              </div>
+              <h3>Quality</h3>
+              <p>We maintain the highest standards in design, materials, and execution to exceed client expectations.</p>
+            </div>
+            <div className="value-card premium-card">
+              <div className="value-icon">
+                <i className="fas fa-handshake"></i>
+              </div>
+              <h3>Trust</h3>
+              <p>Building long-term relationships through transparency, reliability, and honest communication.</p>
+            </div>
+            <div className="value-card premium-card">
+              <div className="value-icon">
+                <i className="fas fa-users"></i>
+              </div>
+              <h3>Collaboration</h3>
+              <p>Working together with clients, designers, and partners to create extraordinary spaces.</p>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
 
-// Services Page Component
+// Enhanced Services Page Component
 function ServicesPage() {
   return (
     <div className="page-content">
-      <section className="page-hero">
+      <section className="page-hero services-hero">
+        <div className="hero-background">
+          <img src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg" alt="Our Services" />
+          <div className="hero-overlay"></div>
+        </div>
         <div className="container">
-          <h1 className="animate-fadeInUp">Our Services</h1>
-          <p className="animate-fadeInUp delay-1">Comprehensive interior design solutions for every need</p>
+          <div className="hero-content">
+            <h1 className="animate-fadeInUp">Our Services</h1>
+            <p className="animate-fadeInUp delay-1">Comprehensive interior design solutions for every need</p>
+          </div>
         </div>
       </section>
 
-      <section className="services-detailed">
+      <section className="services-detailed modern-section">
         <div className="container">
           {SAMPLE_DATA.services.map((service, index) => (
             <div key={index} className={`service-detail ${index % 2 === 1 ? 'reverse' : ''} animate-fadeInUp delay-${index + 1}`}>
               <div className="service-image">
                 <img src={service.image} alt={service.name} />
+                <div className="service-overlay">
+                  <div className="service-badge">
+                    <i className="fas fa-star"></i>
+                    <span>Premium</span>
+                  </div>
+                </div>
               </div>
               <div className="service-content">
                 <h2>{service.name}</h2>
-                <p>{service.description}</p>
+                <p className="service-description">{service.description}</p>
                 <ul className="features-list">
                   {service.features.map((feature, idx) => (
-                    <li key={idx}>✓ {feature}</li>
+                    <li key={idx}>
+                      <i className="fas fa-check"></i>
+                      <span>{feature}</span>
+                    </li>
                   ))}
                 </ul>
-                <div className="service-price">{service.price}</div>
-                <button className="service-btn">Get Quote</button>
+                <div className="service-footer">
+                  <div className="service-price">{service.price}</div>
+                  <button className="service-btn gradient-btn">
+                    <span>Get Quote</span>
+                    <div className="btn-glow"></div>
+                  </button>
+                </div>
               </div>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="process-section modern-section">
+        <div className="container">
+          <div className="section-header">
+            <h2 className="section-title">Our Service Process</h2>
+            <p className="section-subtitle">How we deliver exceptional results</p>
+          </div>
+          
+          <div className="process-steps">
+            <div className="process-step">
+              <div className="step-icon">
+                <i className="fas fa-comments"></i>
+              </div>
+              <h3>Initial Consultation</h3>
+              <p>We discuss your vision, requirements, and budget to understand your needs completely.</p>
+            </div>
+            
+            <div className="process-step">
+              <div className="step-icon">
+                <i className="fas fa-pencil-ruler"></i>
+              </div>
+              <h3>Design Development</h3>
+              <p>Our designers create detailed plans and 3D visualizations of your space.</p>
+            </div>
+            
+            <div className="process-step">
+              <div className="step-icon">
+                <i className="fas fa-clipboard-check"></i>
+              </div>
+              <h3>Approval & Planning</h3>
+              <p>Review and approve designs, then we create detailed project timelines and budgets.</p>
+            </div>
+            
+            <div className="process-step">
+              <div className="step-icon">
+                <i className="fas fa-tools"></i>
+              </div>
+              <h3>Implementation</h3>
+              <p>Our skilled craftsmen execute the design with precision and attention to detail.</p>
+            </div>
+          </div>
         </div>
       </section>
     </div>
   );
 }
 
-// Portfolio Page Component
+// Enhanced Portfolio Page Component
 function PortfolioPage() {
-  const categories = ['All', 'Residential', 'Commercial', 'Kitchen', 'Bathroom'];
+  const categories = ['All', 'Living Room', 'Kitchen', 'Bedroom', 'Bathroom', 'Office'];
   const [activeCategory, setActiveCategory] = useState('All');
+  const [selectedItem, setSelectedItem] = useState(null);
 
-  const portfolioItems = [
-    { category: 'Residential', image: 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg', title: 'Modern Living Room', location: 'Mumbai' },
-    { category: 'Kitchen', image: 'https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg', title: 'Contemporary Kitchen', location: 'Delhi' },
-    { category: 'Bathroom', image: 'https://images.pexels.com/photos/1454804/pexels-photo-1454804.jpeg', title: 'Luxury Bathroom', location: 'Pune' },
-    { category: 'Residential', image: 'https://images.pexels.com/photos/3356416/pexels-photo-3356416.jpeg', title: 'Dining Area', location: 'Bangalore' },
-    { category: 'Commercial', image: 'https://images.unsplash.com/photo-1715593949345-50d3304cff4b', title: 'Office Space', location: 'Chennai' },
-    { category: 'Kitchen', image: 'https://images.pexels.com/photos/1080721/pexels-photo-1080721.jpeg', title: 'Modern Kitchen', location: 'Hyderabad' }
-  ];
-
-  const filteredItems = activeCategory === 'All' ? portfolioItems : portfolioItems.filter(item => item.category === activeCategory);
+  const filteredItems = activeCategory === 'All' 
+    ? SAMPLE_DATA.portfolioItems 
+    : SAMPLE_DATA.portfolioItems.filter(item => item.category === activeCategory);
 
   return (
     <div className="page-content">
-      <section className="page-hero">
+      <section className="page-hero portfolio-hero">
+        <div className="hero-background">
+          <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7" alt="Our Portfolio" />
+          <div className="hero-overlay"></div>
+        </div>
         <div className="container">
-          <h1 className="animate-fadeInUp">Our Portfolio</h1>
-          <p className="animate-fadeInUp delay-1">Explore our stunning interior design transformations</p>
+          <div className="hero-content">
+            <h1 className="animate-fadeInUp">Our Portfolio</h1>
+            <p className="animate-fadeInUp delay-1">Explore our stunning interior design transformations</p>
+          </div>
         </div>
       </section>
 
-      <section className="portfolio-section">
+      <section className="portfolio-section modern-section">
         <div className="container">
           <div className="portfolio-filters animate-fadeInUp">
             {categories.map(category => (
               <button
                 key={category}
-                className={activeCategory === category ? 'active' : ''}
+                className={`filter-btn ${activeCategory === category ? 'active' : ''}`}
                 onClick={() => setActiveCategory(category)}
               >
                 {category}
@@ -696,88 +1141,197 @@ function PortfolioPage() {
 
           <div className="portfolio-grid">
             {filteredItems.map((item, index) => (
-              <div key={index} className={`portfolio-item animate-fadeInUp delay-${index + 1}`}>
-                <img src={item.image} alt={item.title} />
-                <div className="portfolio-overlay">
-                  <h4>{item.title}</h4>
-                  <p>{item.location}</p>
-                  <button className="view-btn">View Details</button>
+              <div 
+                key={item.id} 
+                className={`portfolio-item premium-card animate-fadeInUp delay-${index + 1}`}
+                onClick={() => setSelectedItem(item)}
+              >
+                <div className="portfolio-image">
+                  <img src={item.image} alt={item.title} />
+                  <div className="portfolio-overlay">
+                    <div className="portfolio-info">
+                      <h4>{item.title}</h4>
+                      <p className="portfolio-category">{item.category}</p>
+                      <p className="portfolio-location">{item.location}</p>
+                    </div>
+                    <button className="view-btn">
+                      <i className="fas fa-expand"></i>
+                    </button>
+                  </div>
+                </div>
+                <div className="portfolio-content">
+                  <div className="portfolio-details">
+                    <div className="portfolio-info">
+                      <h4>{item.title}</h4>
+                      <p className="portfolio-meta">{item.area} • {item.budget}</p>
+                    </div>
+                    <div className="portfolio-designer">
+                      <i className="fas fa-user-tie"></i>
+                      <span>{item.designer}</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
         </div>
       </section>
+
+      {/* Portfolio Modal */}
+      {selectedItem && (
+        <div className="modal-overlay" onClick={() => setSelectedItem(null)}>
+          <div className="portfolio-modal" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={() => setSelectedItem(null)}>
+              <i className="fas fa-times"></i>
+            </button>
+            <div className="modal-content">
+              <div className="modal-image">
+                <img src={selectedItem.image} alt={selectedItem.title} />
+              </div>
+              <div className="modal-info">
+                <h3>{selectedItem.title}</h3>
+                <p className="modal-category">{selectedItem.category}</p>
+                <p className="modal-description">{selectedItem.description}</p>
+                <div className="modal-details">
+                  <div className="detail-item">
+                    <i className="fas fa-map-marker-alt"></i>
+                    <span>{selectedItem.location}</span>
+                  </div>
+                  <div className="detail-item">
+                    <i className="fas fa-ruler"></i>
+                    <span>{selectedItem.area}</span>
+                  </div>
+                  <div className="detail-item">
+                    <i className="fas fa-dollar-sign"></i>
+                    <span>{selectedItem.budget}</span>
+                  </div>
+                  <div className="detail-item">
+                    <i className="fas fa-user-tie"></i>
+                    <span>{selectedItem.designer}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
 
-// Contact Page Component
+// Enhanced Contact Page Component
 function ContactPage() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
+    subject: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    
     alert('Thank you for your message! We will get back to you soon.');
-    setFormData({ name: '', email: '', phone: '', message: '' });
+    setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+    setIsSubmitting(false);
   };
 
   return (
     <div className="page-content">
-      <section className="page-hero">
+      <section className="page-hero contact-hero">
+        <div className="hero-background">
+          <img src="https://images.unsplash.com/photo-1637665728218-9d7ed64ae6c6" alt="Contact Us" />
+          <div className="hero-overlay"></div>
+        </div>
         <div className="container">
-          <h1 className="animate-fadeInUp">Contact Us</h1>
-          <p className="animate-fadeInUp delay-1">Get in touch with our interior design experts</p>
+          <div className="hero-content">
+            <h1 className="animate-fadeInUp">Contact Us</h1>
+            <p className="animate-fadeInUp delay-1">Get in touch with our interior design experts</p>
+          </div>
         </div>
       </section>
 
-      <section className="contact-section">
+      <section className="contact-section modern-section">
         <div className="container">
           <div className="contact-content">
             <div className="contact-info animate-fadeInLeft">
               <h2>Get In Touch</h2>
               <p>Ready to transform your space? Contact our team of experts today.</p>
               
-              <div className="contact-item">
-                <div className="contact-icon">📧</div>
-                <div>
-                  <h4>Email</h4>
-                  <p>info@gharinto.com</p>
+              <div className="contact-items">
+                <div className="contact-item">
+                  <div className="contact-icon">
+                    <i className="fas fa-envelope"></i>
+                  </div>
+                  <div className="contact-details">
+                    <h4>Email</h4>
+                    <p>info@gharinto.com</p>
+                    <p>support@gharinto.com</p>
+                  </div>
+                </div>
+                
+                <div className="contact-item">
+                  <div className="contact-icon">
+                    <i className="fas fa-phone"></i>
+                  </div>
+                  <div className="contact-details">
+                    <h4>Phone</h4>
+                    <p>+91-9876543210</p>
+                    <p>+91-9876543211</p>
+                  </div>
+                </div>
+                
+                <div className="contact-item">
+                  <div className="contact-icon">
+                    <i className="fas fa-map-marker-alt"></i>
+                  </div>
+                  <div className="contact-details">
+                    <h4>Office</h4>
+                    <p>123 Design Street</p>
+                    <p>Mumbai, Maharashtra 400001</p>
+                  </div>
+                </div>
+                
+                <div className="contact-item">
+                  <div className="contact-icon">
+                    <i className="fas fa-clock"></i>
+                  </div>
+                  <div className="contact-details">
+                    <h4>Hours</h4>
+                    <p>Monday - Saturday: 9AM - 7PM</p>
+                    <p>Sunday: 10AM - 5PM</p>
+                  </div>
                 </div>
               </div>
-              
-              <div className="contact-item">
-                <div className="contact-icon">📞</div>
-                <div>
-                  <h4>Phone</h4>
-                  <p>+91-9876543210</p>
-                </div>
-              </div>
-              
-              <div className="contact-item">
-                <div className="contact-icon">📍</div>
-                <div>
-                  <h4>Office</h4>
-                  <p>Mumbai, Maharashtra, India</p>
-                </div>
-              </div>
-              
-              <div className="contact-item">
-                <div className="contact-icon">🕒</div>
-                <div>
-                  <h4>Hours</h4>
-                  <p>Mon-Sat: 9AM-7PM</p>
+
+              <div className="contact-social">
+                <h4>Follow Us</h4>
+                <div className="social-links">
+                  <a href="#" className="social-link">
+                    <i className="fab fa-facebook-f"></i>
+                  </a>
+                  <a href="#" className="social-link">
+                    <i className="fab fa-instagram"></i>
+                  </a>
+                  <a href="#" className="social-link">
+                    <i className="fab fa-twitter"></i>
+                  </a>
+                  <a href="#" className="social-link">
+                    <i className="fab fa-linkedin-in"></i>
+                  </a>
                 </div>
               </div>
             </div>
 
             <form className="contact-form animate-fadeInRight" onSubmit={handleSubmit}>
               <h3>Send us a Message</h3>
+              
               <div className="form-row">
                 <div className="form-group">
                   <label>Name</label>
@@ -798,15 +1352,33 @@ function ContactPage() {
                   />
                 </div>
               </div>
-              <div className="form-group">
-                <label>Phone</label>
-                <input
-                  type="tel"
-                  value={formData.phone}
-                  onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                  required
-                />
+              
+              <div className="form-row">
+                <div className="form-group">
+                  <label>Phone</label>
+                  <input
+                    type="tel"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Subject</label>
+                  <select
+                    value={formData.subject}
+                    onChange={(e) => setFormData({...formData, subject: e.target.value})}
+                    required
+                  >
+                    <option value="">Select a subject</option>
+                    <option value="consultation">Free Consultation</option>
+                    <option value="project">New Project</option>
+                    <option value="support">Support</option>
+                    <option value="partnership">Partnership</option>
+                  </select>
+                </div>
               </div>
+              
               <div className="form-group">
                 <label>Message</label>
                 <textarea
@@ -816,7 +1388,21 @@ function ContactPage() {
                   required
                 />
               </div>
-              <button type="submit" className="submit-btn">Send Message</button>
+              
+              <button type="submit" className="submit-btn gradient-btn" disabled={isSubmitting}>
+                {isSubmitting ? (
+                  <>
+                    <i className="fas fa-spinner fa-spin"></i>
+                    <span>Sending...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Send Message</span>
+                    <i className="fas fa-paper-plane"></i>
+                  </>
+                )}
+                <div className="btn-glow"></div>
+              </button>
             </form>
           </div>
         </div>
@@ -858,39 +1444,64 @@ function LoginModal({ onClose }) {
 
   return (
     <div className="modal-overlay animate-fadeIn" onClick={onClose}>
-      <div className="modal animate-slideInUp" onClick={(e) => e.stopPropagation()}>
+      <div className="login-modal animate-slideInUp" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
-          <h3>Welcome to Gharinto</h3>
-          <button className="close-btn" onClick={onClose}>×</button>
+          <div className="modal-title">
+            <div className="logo-icon">🏠</div>
+            <div>
+              <h3>Welcome to Gharinto</h3>
+              <p>Sign in to your account</p>
+            </div>
+          </div>
+          <button className="close-btn" onClick={onClose}>
+            <i className="fas fa-times"></i>
+          </button>
         </div>
         
         <form onSubmit={handleLogin} className="login-form">
           <div className="form-group">
             <label>Email Address</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
-              required
-            />
+            <div className="input-group">
+              <i className="fas fa-envelope"></i>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email"
+                required
+              />
+            </div>
           </div>
           
           <div className="form-group">
             <label>Password</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter your password"
-              required
-            />
+            <div className="input-group">
+              <i className="fas fa-lock"></i>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter your password"
+                required
+              />
+            </div>
           </div>
           
           {error && <div className="error animate-shake">{error}</div>}
           
-          <button type="submit" className="login-submit" disabled={loading}>
-            {loading ? 'Signing In...' : 'Sign In'}
+          <button type="submit" className="login-submit gradient-btn" disabled={loading}>
+            {loading ? (
+              <>
+                <i className="fas fa-spinner fa-spin"></i>
+                <span>Signing In...</span>
+              </>
+            ) : (
+              <>
+                <span>Sign In</span>
+                <i className="fas fa-sign-in-alt"></i>
+              </>
+            )}
+            <div className="btn-glow"></div>
           </button>
         </form>
 
@@ -898,36 +1509,46 @@ function LoginModal({ onClose }) {
           <h4>Try Demo Accounts:</h4>
           <div className="demo-grid">
             <button onClick={() => quickLogin('admin')} className="demo-card">
-              <span className="demo-icon">👨‍💼</span>
-              <div>
+              <div className="demo-icon">
+                <i className="fas fa-user-shield"></i>
+              </div>
+              <div className="demo-info">
                 <h5>Admin Dashboard</h5>
                 <p>Full system control</p>
               </div>
             </button>
             <button onClick={() => quickLogin('pm')} className="demo-card">
-              <span className="demo-icon">📊</span>
-              <div>
+              <div className="demo-icon">
+                <i className="fas fa-project-diagram"></i>
+              </div>
+              <div className="demo-info">
                 <h5>Project Manager</h5>
                 <p>Project oversight</p>
               </div>
             </button>
             <button onClick={() => quickLogin('customer')} className="demo-card">
-              <span className="demo-icon">🏠</span>
-              <div>
+              <div className="demo-icon">
+                <i className="fas fa-home"></i>
+              </div>
+              <div className="demo-info">
                 <h5>Customer Portal</h5>
                 <p>Track your project</p>
               </div>
             </button>
             <button onClick={() => quickLogin('designer')} className="demo-card">
-              <span className="demo-icon">🎨</span>
-              <div>
+              <div className="demo-icon">
+                <i className="fas fa-paint-brush"></i>
+              </div>
+              <div className="demo-info">
                 <h5>Designer Portal</h5>
                 <p>Manage designs</p>
               </div>
             </button>
             <button onClick={() => quickLogin('procurement')} className="demo-card">
-              <span className="demo-icon">📦</span>
-              <div>
+              <div className="demo-icon">
+                <i className="fas fa-boxes"></i>
+              </div>
+              <div className="demo-info">
                 <h5>Procurement</h5>
                 <p>Inventory management</p>
               </div>
@@ -939,1537 +1560,16 @@ function LoginModal({ onClose }) {
   );
 }
 
-// Rest of the components remain the same but will be enhanced in the CSS...
-// [Previous dashboard components continue here - AdminDashboard, PMDashboard, CustomerPortal, DesignerPortal, ProcurementPortal]
-// I'll continue with the enhanced dashboard components...
-
-// Enhanced Admin Dashboard Component
-function AdminDashboard() {
-  const { user, logout } = useAuth();
-  const [activeTab, setActiveTab] = useState('dashboard');
-  const [notifications] = useState([
-    { id: 1, message: 'New lead from Mumbai - High Priority', time: '2 min ago', type: 'lead' },
-    { id: 2, message: 'Project PR001 reached 70% completion', time: '1 hour ago', type: 'project' },
-    { id: 3, message: 'Payment received from Sharma Family', time: '3 hours ago', type: 'payment' }
-  ]);
-
-  const renderContent = () => {
-    switch(activeTab) {
-      case 'dashboard':
-        return <AdminDashboardContent />;
-      case 'customers':
-        return <CustomersManagement />;
-      case 'projects':
-        return <ProjectsManagement />;
-      case 'leads':
-        return <LeadsManagement />;
-      case 'designers':
-        return <DesignersManagement />;
-      case 'reports':
-        return <ReportsManagement />;
-      default:
-        return <AdminDashboardContent />;
-    }
-  };
-
-  return (
-    <div className="dashboard">
-      <div className="dashboard-header">
-        <div className="header-left">
-          <h2>Admin Dashboard</h2>
-          <p>Welcome back, {user.name}</p>
-        </div>
-        <div className="header-right">
-          <div className="notifications-dropdown">
-            <button className="notification-btn">
-              🔔 <span className="notification-count">{notifications.length}</span>
-            </button>
-            <div className="notifications-panel">
-              {notifications.map(notif => (
-                <div key={notif.id} className="notification-item">
-                  <p>{notif.message}</p>
-                  <span>{notif.time}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="user-info">
-            <img src={user.avatar} alt={user.name} className="avatar" />
-            <div className="user-details">
-              <span className="user-name">{user.name}</span>
-              <span className="user-role">{user.title}</span>
-            </div>
-            <button onClick={logout} className="logout-btn">Logout</button>
-          </div>
-        </div>
-      </div>
-
-      <div className="dashboard-layout">
-        <div className="sidebar">
-          <nav className="nav-menu">
-            <button 
-              className={activeTab === 'dashboard' ? 'active' : ''}
-              onClick={() => setActiveTab('dashboard')}
-            >
-              📊 Dashboard
-            </button>
-            <button 
-              className={activeTab === 'customers' ? 'active' : ''}
-              onClick={() => setActiveTab('customers')}
-            >
-              👥 Customers
-            </button>
-            <button 
-              className={activeTab === 'projects' ? 'active' : ''}
-              onClick={() => setActiveTab('projects')}
-            >
-              🏗️ Projects
-            </button>
-            <button 
-              className={activeTab === 'leads' ? 'active' : ''}
-              onClick={() => setActiveTab('leads')}
-            >
-              📈 Leads
-            </button>
-            <button 
-              className={activeTab === 'designers' ? 'active' : ''}
-              onClick={() => setActiveTab('designers')}
-            >
-              🎨 Designers
-            </button>
-            <button 
-              className={activeTab === 'reports' ? 'active' : ''}
-              onClick={() => setActiveTab('reports')}
-            >
-              📋 Reports
-            </button>
-          </nav>
-        </div>
-
-        <div className="main-content">
-          {renderContent()}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// Enhanced Admin Dashboard Content
-function AdminDashboardContent() {
-  return (
-    <div className="dashboard-content">
-      <div className="kpi-cards">
-        <div className="kpi-card animate-slideInUp">
-          <div className="kpi-icon">🏠</div>
-          <div className="kpi-details">
-            <h3>156</h3>
-            <p>Total Projects</p>
-            <span className="trend up">+12% from last month</span>
-          </div>
-        </div>
-        <div className="kpi-card animate-slideInUp delay-1">
-          <div className="kpi-icon">👥</div>
-          <div className="kpi-details">
-            <h3>89</h3>
-            <p>Active Customers</p>
-            <span className="trend up">+8% from last month</span>
-          </div>
-        </div>
-        <div className="kpi-card animate-slideInUp delay-2">
-          <div className="kpi-icon">💰</div>
-          <div className="kpi-details">
-            <h3>₹12.5L</h3>
-            <p>Revenue This Month</p>
-            <span className="trend up">+15% from last month</span>
-          </div>
-        </div>
-        <div className="kpi-card animate-slideInUp delay-3">
-          <div className="kpi-icon">⭐</div>
-          <div className="kpi-details">
-            <h3>4.2</h3>
-            <p>Avg Partner Rating</p>
-            <span className="trend down">-0.1 from last month</span>
-          </div>
-        </div>
-      </div>
-
-      <div className="dashboard-grid">
-        <div className="chart-section">
-          <div className="chart-container animate-fadeInUp">
-            <div className="chart-header">
-              <h4>Monthly Revenue Trend</h4>
-              <div className="chart-controls">
-                <button className="active">6M</button>
-                <button>1Y</button>
-                <button>All</button>
-              </div>
-            </div>
-            <div className="enhanced-chart">
-              <div className="chart-bars">
-                <div className="bar" style={{height: '60%'}} data-value="₹8.2L">
-                  <span className="bar-label">Jan</span>
-                </div>
-                <div className="bar" style={{height: '80%'}} data-value="₹10.5L">
-                  <span className="bar-label">Feb</span>
-                </div>
-                <div className="bar" style={{height: '45%'}} data-value="₹6.8L">
-                  <span className="bar-label">Mar</span>
-                </div>
-                <div className="bar" style={{height: '90%'}} data-value="₹11.2L">
-                  <span className="bar-label">Apr</span>
-                </div>
-                <div className="bar" style={{height: '70%'}} data-value="₹9.1L">
-                  <span className="bar-label">May</span>
-                </div>
-                <div className="bar active" style={{height: '95%'}} data-value="₹12.5L">
-                  <span className="bar-label">Jun</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="quick-stats animate-fadeInUp delay-1">
-            <h4>Quick Statistics</h4>
-            <div className="stats-grid">
-              <div className="stat-item">
-                <span className="stat-number">25</span>
-                <span className="stat-label">New Leads Today</span>
-              </div>
-              <div className="stat-item">
-                <span className="stat-number">8</span>
-                <span className="stat-label">Projects Started</span>
-              </div>
-              <div className="stat-item">
-                <span className="stat-number">₹2.3L</span>
-                <span className="stat-label">Today's Revenue</span>
-              </div>
-              <div className="stat-item">
-                <span className="stat-number">95%</span>
-                <span className="stat-label">Customer Satisfaction</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="side-panels">
-          <div className="panel animate-fadeInRight">
-            <h4>Project Status Distribution</h4>
-            <div className="status-chart">
-              <div className="status-item">
-                <div className="status-bar">
-                  <div className="bar-fill in-progress" style={{width: '45%'}}></div>
-                </div>
-                <span>In Progress (45%)</span>
-              </div>
-              <div className="status-item">
-                <div className="status-bar">
-                  <div className="bar-fill completed" style={{width: '30%'}}></div>
-                </div>
-                <span>Completed (30%)</span>
-              </div>
-              <div className="status-item">
-                <div className="status-bar">
-                  <div className="bar-fill design" style={{width: '15%'}}></div>
-                </div>
-                <span>Design Phase (15%)</span>
-              </div>
-              <div className="status-item">
-                <div className="status-bar">
-                  <div className="bar-fill hold" style={{width: '10%'}}></div>
-                </div>
-                <span>On Hold (10%)</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="panel animate-fadeInRight delay-1">
-            <h4>Top Performing Designers</h4>
-            <div className="designer-rankings">
-              {SAMPLE_DATA.designers.slice(0, 5).map((designer, index) => (
-                <div key={designer.id} className="designer-rank-item">
-                  <div className="rank-number">#{index + 1}</div>
-                  <img src={designer.avatar} alt={designer.name} className="designer-avatar" />
-                  <div className="designer-info">
-                    <h5>{designer.name}</h5>
-                    <div className="designer-stats">
-                      <span>{designer.rating}⭐</span>
-                      <span>{designer.projects} projects</span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="recent-activity animate-fadeInUp delay-2">
-        <div className="activity-header">
-          <h4>Recent Activity</h4>
-          <button className="view-all-btn">View All</button>
-        </div>
-        <div className="activity-timeline">
-          <div className="activity-item">
-            <div className="activity-icon lead">📈</div>
-            <div className="activity-content">
-              <p><strong>New high-priority lead</strong> assigned to Priya Mehta</p>
-              <span className="activity-time">2 minutes ago</span>
-            </div>
-          </div>
-          <div className="activity-item">
-            <div className="activity-icon project">🏗️</div>
-            <div className="activity-content">
-              <p><strong>Project #PR001</strong> moved to Installation phase</p>
-              <span className="activity-time">1 hour ago</span>
-            </div>
-          </div>
-          <div className="activity-item">
-            <div className="activity-icon payment">💳</div>
-            <div className="activity-content">
-              <p><strong>Payment received</strong> from Sharma Family - ₹3.5L</p>
-              <span className="activity-time">3 hours ago</span>
-            </div>
-          </div>
-          <div className="activity-item">
-            <div className="activity-icon designer">🎨</div>
-            <div className="activity-content">
-              <p><strong>New designer</strong> Kavya Nair joined the platform</p>
-              <span className="activity-time">1 day ago</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// Enhanced Customers Management
-function CustomersManagement() {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [filterStatus, setFilterStatus] = useState('All');
-  const [sortBy, setSortBy] = useState('name');
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
-  
-  const filteredCustomers = SAMPLE_DATA.customers
-    .filter(customer => 
-      customer.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
-      (filterStatus === 'All' || customer.status === filterStatus)
-    )
-    .sort((a, b) => {
-      if (sortBy === 'totalSpent') return b.totalSpent - a.totalSpent;
-      return a[sortBy].localeCompare(b[sortBy]);
-    });
-
-  const totalPages = Math.ceil(filteredCustomers.length / itemsPerPage);
-  const currentCustomers = filteredCustomers.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
-  );
-
-  return (
-    <div className="management-section animate-fadeInUp">
-      <div className="section-header">
-        <div>
-          <h3>Customer Management</h3>
-          <p>Manage all customer accounts and relationships</p>
-        </div>
-        <button className="add-btn">+ Add Customer</button>
-      </div>
-
-      <div className="filters-section">
-        <div className="search-bar">
-          <input
-            type="text"
-            placeholder="Search customers..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </div>
-        <div className="filter-controls">
-          <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)}>
-            <option value="All">All Status</option>
-            <option value="Active">Active</option>
-            <option value="VIP">VIP</option>
-          </select>
-          <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
-            <option value="name">Sort by Name</option>
-            <option value="totalSpent">Sort by Spending</option>
-            <option value="registrationDate">Sort by Date</option>
-          </select>
-          <button className="export-btn">📊 Export</button>
-        </div>
-      </div>
-
-      <div className="enhanced-table">
-        <table>
-          <thead>
-            <tr>
-              <th>Customer</th>
-              <th>Contact</th>
-              <th>Location</th>
-              <th>Projects</th>
-              <th>Total Spent</th>
-              <th>Status</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {currentCustomers.map(customer => (
-              <tr key={customer.id} className="animate-fadeInUp">
-                <td>
-                  <div className="customer-info">
-                    <div className="customer-avatar">{customer.name.charAt(0)}</div>
-                    <div>
-                      <h5>{customer.name}</h5>
-                      <p>{customer.id}</p>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div>
-                    <p>{customer.email}</p>
-                    <p>{customer.phone}</p>
-                  </div>
-                </td>
-                <td>{customer.location}</td>
-                <td>
-                  <span className="project-count">{customer.projects}</span>
-                </td>
-                <td>
-                  <span className="spending-amount">₹{(customer.totalSpent / 100000).toFixed(1)}L</span>
-                </td>
-                <td>
-                  <span className={`status ${customer.status.toLowerCase()}`}>
-                    {customer.status}
-                  </span>
-                </td>
-                <td>
-                  <div className="action-buttons">
-                    <button className="action-btn view" title="View Details">👁️</button>
-                    <button className="action-btn edit" title="Edit">✏️</button>
-                    <button className="action-btn message" title="Message">💬</button>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      <div className="pagination">
-        <button 
-          disabled={currentPage === 1}
-          onClick={() => setCurrentPage(currentPage - 1)}
-        >
-          Previous
-        </button>
-        <span>Page {currentPage} of {totalPages}</span>
-        <button 
-          disabled={currentPage === totalPages}
-          onClick={() => setCurrentPage(currentPage + 1)}
-        >
-          Next
-        </button>
-      </div>
-    </div>
-  );
-}
-
-// Projects Management Page
-function ProjectsManagement() {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [filterStatus, setFilterStatus] = useState('All');
-  
-  const filteredProjects = SAMPLE_DATA.projects.filter(project => 
-    project.customerName.toLowerCase().includes(searchTerm.toLowerCase()) &&
-    (filterStatus === 'All' || project.status === filterStatus)
-  );
-
-  return (
-    <div className="dashboard-content">
-      <div className="section-header">
-        <div>
-          <h2>Projects Management</h2>
-          <p>Monitor and manage all interior design projects</p>
-        </div>
-        <button className="add-btn">+ New Project</button>
-      </div>
-
-      <div className="filters-section">
-        <div className="search-bar">
-          <input
-            type="text"
-            placeholder="Search projects..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </div>
-        <div className="filter-controls">
-          <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)}>
-            <option value="All">All Status</option>
-            <option value="In Progress">In Progress</option>
-            <option value="Design Phase">Design Phase</option>
-            <option value="Completed">Completed</option>
-            <option value="Procurement">Procurement</option>
-            <option value="Installation">Installation</option>
-          </select>
-        </div>
-      </div>
-
-      <div className="enhanced-table">
-        <table>
-          <thead>
-            <tr>
-              <th>Project ID</th>
-              <th>Customer</th>
-              <th>Designer</th>
-              <th>Status</th>
-              <th>Progress</th>
-              <th>Budget</th>
-              <th>Spent</th>
-              <th>Location</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredProjects.map(project => (
-              <tr key={project.id} className="animate-fadeInUp">
-                <td><strong>{project.id}</strong></td>
-                <td>{project.customerName}</td>
-                <td>{project.designerName}</td>
-                <td>
-                  <span className={`status ${project.status.toLowerCase().replace(' ', '-')}`}>
-                    {project.status}
-                  </span>
-                </td>
-                <td>
-                  <div className="progress-bar">
-                    <div className="progress-fill" style={{width: `${project.progress}%`}}></div>
-                    <span>{project.progress}%</span>
-                  </div>
-                </td>
-                <td>₹{(project.budget / 100000).toFixed(1)}L</td>
-                <td>₹{(project.spent / 100000).toFixed(1)}L</td>
-                <td>{project.location}</td>
-                <td>
-                  <div className="action-buttons">
-                    <button className="action-btn view" title="View Details">👁️</button>
-                    <button className="action-btn edit" title="Edit">✏️</button>
-                    <button className="action-btn message" title="Message">💬</button>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
-}
-
-// Leads Management Page
-function LeadsManagement() {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [filterStatus, setFilterStatus] = useState('All');
-  const [filterPriority, setFilterPriority] = useState('All');
-  
-  const filteredLeads = SAMPLE_DATA.leads.filter(lead => 
-    lead.customer.toLowerCase().includes(searchTerm.toLowerCase()) &&
-    (filterStatus === 'All' || lead.status === filterStatus) &&
-    (filterPriority === 'All' || lead.priority === filterPriority)
-  );
-
-  return (
-    <div className="dashboard-content">
-      <div className="section-header">
-        <div>
-          <h2>Leads Management</h2>
-          <p>Track and manage potential customer leads</p>
-        </div>
-        <button className="add-btn">+ New Lead</button>
-      </div>
-
-      <div className="filters-section">
-        <div className="search-bar">
-          <input
-            type="text"
-            placeholder="Search leads..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </div>
-        <div className="filter-controls">
-          <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)}>
-            <option value="All">All Status</option>
-            <option value="New">New</option>
-            <option value="Assigned">Assigned</option>
-            <option value="In Discussion">In Discussion</option>
-          </select>
-          <select value={filterPriority} onChange={(e) => setFilterPriority(e.target.value)}>
-            <option value="All">All Priority</option>
-            <option value="High">High</option>
-            <option value="Medium">Medium</option>
-            <option value="Low">Low</option>
-          </select>
-        </div>
-      </div>
-
-      <div className="enhanced-table">
-        <table>
-          <thead>
-            <tr>
-              <th>Lead ID</th>
-              <th>Customer</th>
-              <th>Contact</th>
-              <th>Budget</th>
-              <th>Location</th>
-              <th>Priority</th>
-              <th>Status</th>
-              <th>Assigned To</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredLeads.map(lead => (
-              <tr key={lead.id} className="animate-fadeInUp">
-                <td><strong>{lead.id}</strong></td>
-                <td>{lead.customer}</td>
-                <td>{lead.phone}</td>
-                <td>₹{lead.budget}</td>
-                <td>{lead.location}</td>
-                <td>
-                  <span className={`priority ${lead.priority.toLowerCase()}`}>
-                    {lead.priority}
-                  </span>
-                </td>
-                <td>
-                  <span className={`status ${lead.status.toLowerCase().replace(' ', '-')}`}>
-                    {lead.status}
-                  </span>
-                </td>
-                <td>{lead.assignedTo || 'Unassigned'}</td>
-                <td>
-                  <div className="action-buttons">
-                    <button className="action-btn assign" title="Assign">👨‍💼</button>
-                    <button className="action-btn call" title="Call">📞</button>
-                    <button className="action-btn convert" title="Convert">💼</button>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
-}
-
-// Designers Management Page
-function DesignersManagement() {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [filterStatus, setFilterStatus] = useState('All');
-  
-  const filteredDesigners = SAMPLE_DATA.designers.filter(designer => 
-    designer.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
-    (filterStatus === 'All' || designer.status === filterStatus)
-  );
-
-  return (
-    <div className="dashboard-content">
-      <div className="section-header">
-        <div>
-          <h2>Designers Management</h2>
-          <p>Manage interior designers and their performance</p>
-        </div>
-        <button className="add-btn">+ Add Designer</button>
-      </div>
-
-      <div className="filters-section">
-        <div className="search-bar">
-          <input
-            type="text"
-            placeholder="Search designers..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </div>
-        <div className="filter-controls">
-          <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)}>
-            <option value="All">All Status</option>
-            <option value="Active">Active</option>
-            <option value="Inactive">Inactive</option>
-          </select>
-        </div>
-      </div>
-
-      <div className="enhanced-table">
-        <table>
-          <thead>
-            <tr>
-              <th>Designer</th>
-              <th>Contact</th>
-              <th>Experience</th>
-              <th>Specialization</th>
-              <th>Rating</th>
-              <th>Projects</th>
-              <th>Wallet Balance</th>
-              <th>Status</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredDesigners.map(designer => (
-              <tr key={designer.id} className="animate-fadeInUp">
-                <td>
-                  <div className="designer-info">
-                    <img src={designer.avatar} alt={designer.name} className="designer-avatar" />
-                    <div>
-                      <h5>{designer.name}</h5>
-                      <p>{designer.id}</p>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div>
-                    <p>{designer.phone}</p>
-                    <p>{designer.location}</p>
-                  </div>
-                </td>
-                <td>{designer.experience} years</td>
-                <td>{designer.specialization}</td>
-                <td>
-                  <div className="rating">
-                    <span>{designer.rating}⭐</span>
-                  </div>
-                </td>
-                <td>
-                  <div className="project-stats">
-                    <span className="active-projects">{designer.projects} active</span>
-                    <span className="completed-projects">{designer.completedProjects} completed</span>
-                  </div>
-                </td>
-                <td>₹{(designer.walletBalance / 1000).toFixed(0)}K</td>
-                <td>
-                  <span className={`status ${designer.status.toLowerCase()}`}>
-                    {designer.status}
-                  </span>
-                </td>
-                <td>
-                  <div className="action-buttons">
-                    <button className="action-btn view" title="View Portfolio">👁️</button>
-                    <button className="action-btn edit" title="Edit">✏️</button>
-                    <button className="action-btn wallet" title="Wallet">💰</button>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
-}
-
-// Reports Management Page
-function ReportsManagement() {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [filterType, setFilterType] = useState('All');
-  const [filterStatus, setFilterStatus] = useState('All');
-
-  // Sample reports data based on the projects and customers data
-  const reportsData = [
-    {
-      id: 'RPT001',
-      name: 'Monthly Revenue Report',
-      type: 'Financial',
-      generatedDate: '2024-01-15',
-      status: 'Ready',
-      size: '2.3 MB',
-      requestedBy: 'Admin',
-      description: 'Comprehensive monthly revenue analysis'
-    },
-    {
-      id: 'RPT002',
-      name: 'Project Progress Summary',
-      type: 'Project',
-      generatedDate: '2024-01-14',
-      status: 'Ready',
-      size: '1.8 MB',
-      requestedBy: 'PM Manager',
-      description: 'All active projects status and progress'
-    },
-    {
-      id: 'RPT003',
-      name: 'Customer Satisfaction Survey',
-      type: 'Customer',
-      generatedDate: '2024-01-12',
-      status: 'Generating',
-      size: '-',
-      requestedBy: 'Admin',
-      description: 'Customer feedback and satisfaction metrics'
-    },
-    {
-      id: 'RPT004',
-      name: 'Designer Performance Analytics',
-      type: 'HR',
-      generatedDate: '2024-01-10',
-      status: 'Ready',
-      size: '3.1 MB',
-      requestedBy: 'HR Manager',
-      description: 'Designer productivity and performance metrics'
-    },
-    {
-      id: 'RPT005',
-      name: 'Material Cost Analysis',
-      type: 'Procurement',
-      generatedDate: '2024-01-08',
-      status: 'Ready',
-      size: '1.5 MB',
-      requestedBy: 'Procurement',
-      description: 'Material costs and supplier analysis'
-    },
-    {
-      id: 'RPT006',
-      name: 'Lead Conversion Report',
-      type: 'Sales',
-      generatedDate: '2024-01-05',
-      status: 'Failed',
-      size: '-',
-      requestedBy: 'Sales Manager',
-      description: 'Lead generation and conversion statistics'
-    }
-  ];
-
-  const filteredReports = reportsData.filter(report =>
-    report.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
-    (filterType === 'All' || report.type === filterType) &&
-    (filterStatus === 'All' || report.status === filterStatus)
-  );
-
-  const getStatusBadge = (status) => {
-    const statusStyles = {
-      'Ready': 'status-completed',
-      'Generating': 'status-progress',
-      'Failed': 'status-cancelled'
-    };
-    return statusStyles[status] || 'status-pending';
-  };
-
-  return (
-    <div className="dashboard-content">
-      <div className="section-header">
-        <div>
-          <h2>Reports Management</h2>
-          <p>Generate, view and download business reports</p>
-        </div>
-        <button className="add-btn">+ Generate Report</button>
-      </div>
-
-      <div className="filters-section">
-        <div className="search-bar">
-          <input
-            type="text"
-            placeholder="Search reports..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </div>
-        <div className="filter-controls">
-          <select value={filterType} onChange={(e) => setFilterType(e.target.value)}>
-            <option value="All">All Types</option>
-            <option value="Financial">Financial</option>
-            <option value="Project">Project</option>
-            <option value="Customer">Customer</option>
-            <option value="HR">HR</option>
-            <option value="Procurement">Procurement</option>
-            <option value="Sales">Sales</option>
-          </select>
-          <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)}>
-            <option value="All">All Status</option>
-            <option value="Ready">Ready</option>
-            <option value="Generating">Generating</option>
-            <option value="Failed">Failed</option>
-          </select>
-        </div>
-      </div>
-
-      <div className="enhanced-table">
-        <table>
-          <thead>
-            <tr>
-              <th>Report ID</th>
-              <th>Report Name</th>
-              <th>Type</th>
-              <th>Generated Date</th>
-              <th>Status</th>
-              <th>Size</th>
-              <th>Requested By</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredReports.map(report => (
-              <tr key={report.id}>
-                <td className="font-mono">{report.id}</td>
-                <td>
-                  <div>
-                    <strong>{report.name}</strong>
-                    <div className="text-gray">{report.description}</div>
-                  </div>
-                </td>
-                <td>
-                  <span className="type-badge">{report.type}</span>
-                </td>
-                <td>{report.generatedDate}</td>
-                <td>
-                  <span className={`status-badge ${getStatusBadge(report.status)}`}>
-                    {report.status}
-                  </span>
-                </td>
-                <td>{report.size}</td>
-                <td>{report.requestedBy}</td>
-                <td>
-                  <div className="action-buttons">
-                    {report.status === 'Ready' && (
-                      <>
-                        <button className="btn-view" title="View Report">👁️</button>
-                        <button className="btn-download" title="Download">⬇️</button>
-                      </>
-                    )}
-                    {report.status === 'Generating' && (
-                      <button className="btn-cancel" title="Cancel">❌</button>
-                    )}
-                    {report.status === 'Failed' && (
-                      <button className="btn-retry" title="Retry">🔄</button>
-                    )}
-                    <button className="btn-delete" title="Delete">🗑️</button>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      <div className="table-footer">
-        <div className="results-info">
-          Showing {filteredReports.length} of {reportsData.length} reports
-        </div>
-        <div className="pagination">
-          <button disabled>Previous</button>
-          <span>Page 1 of 1</span>
-          <button disabled>Next</button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// Project Manager Dashboard Component
-function PMDashboard() {
-  const { user, logout } = useAuth();
-  const [activeTab, setActiveTab] = useState('dashboard');
-
-  const renderContent = () => {
-    switch(activeTab) {
-      case 'dashboard':
-        return <PMDashboardContent />;
-      case 'projects':
-        return <ProjectsManagement />;
-      case 'timeline':
-        return <ProjectTimeline />;
-      case 'resources':
-        return <ResourceManagement />;
-      case 'reports':
-        return <PMReports />;
-      default:
-        return <PMDashboardContent />;
-    }
-  };
-
-  return (
-    <div className="dashboard">
-      <div className="dashboard-header">
-        <div className="header-left">
-          <h2>Project Manager Dashboard</h2>
-          <p>Welcome back, {user.name}</p>
-        </div>
-        <div className="header-right">
-          <div className="user-info">
-            <img src={user.avatar} alt={user.name} className="avatar" />
-            <div className="user-details">
-              <span className="user-name">{user.name}</span>
-              <span className="user-role">{user.title}</span>
-            </div>
-            <button onClick={logout} className="logout-btn">Logout</button>
-          </div>
-        </div>
-      </div>
-
-      <div className="dashboard-layout">
-        <div className="sidebar">
-          <nav className="nav-menu">
-            <button 
-              className={activeTab === 'dashboard' ? 'active' : ''}
-              onClick={() => setActiveTab('dashboard')}
-            >
-              📊 Dashboard
-            </button>
-            <button 
-              className={activeTab === 'projects' ? 'active' : ''}
-              onClick={() => setActiveTab('projects')}
-            >
-              🏗️ Projects
-            </button>
-            <button 
-              className={activeTab === 'timeline' ? 'active' : ''}
-              onClick={() => setActiveTab('timeline')}
-            >
-              📅 Timeline
-            </button>
-            <button 
-              className={activeTab === 'resources' ? 'active' : ''}
-              onClick={() => setActiveTab('resources')}
-            >
-              👥 Resources
-            </button>
-            <button 
-              className={activeTab === 'reports' ? 'active' : ''}
-              onClick={() => setActiveTab('reports')}
-            >
-              📋 Reports
-            </button>
-          </nav>
-        </div>
-
-        <div className="main-content">
-          {renderContent()}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function PMDashboardContent() {
-  return (
-    <div className="dashboard-content">
-      <div className="kpi-cards">
-        <div className="kpi-card animate-slideInUp">
-          <div className="kpi-icon">🏗️</div>
-          <div className="kpi-details">
-            <h3>12</h3>
-            <p>Active Projects</p>
-            <span className="trend up">+2 this week</span>
-          </div>
-        </div>
-        <div className="kpi-card animate-slideInUp delay-1">
-          <div className="kpi-icon">✅</div>
-          <div className="kpi-details">
-            <h3>8</h3>
-            <p>Completed This Month</p>
-            <span className="trend up">+15% from last month</span>
-          </div>
-        </div>
-        <div className="kpi-card animate-slideInUp delay-2">
-          <div className="kpi-icon">👥</div>
-          <div className="kpi-details">
-            <h3>25</h3>
-            <p>Team Members</p>
-            <span className="trend neutral">Stable</span>
-          </div>
-        </div>
-        <div className="kpi-card animate-slideInUp delay-3">
-          <div className="kpi-icon">⏰</div>
-          <div className="kpi-details">
-            <h3>92%</h3>
-            <p>On-Time Delivery</p>
-            <span className="trend up">+5% this quarter</span>
-          </div>
-        </div>
-      </div>
-
-      <div className="pm-main-content">
-        <h3>My Projects Overview</h3>
-        <div className="projects-overview">
-          {SAMPLE_DATA.projects.slice(0, 6).map(project => (
-            <div key={project.id} className="project-card animate-fadeInUp">
-              <div className="project-header">
-                <h4>{project.id}</h4>
-                <span className={`status ${project.status.toLowerCase().replace(' ', '-')}`}>
-                  {project.status}
-                </span>
-              </div>
-              <p><strong>Customer:</strong> {project.customerName}</p>
-              <p><strong>Designer:</strong> {project.designerName}</p>
-              <p><strong>Location:</strong> {project.location}</p>
-              <div className="progress-section">
-                <div className="progress-bar">
-                  <div className="progress-fill" style={{width: `${project.progress}%`}}></div>
-                </div>
-                <span>{project.progress}% Complete</span>
-              </div>
-              <div className="project-budget">
-                <span>Budget: ₹{(project.budget / 100000).toFixed(1)}L</span>
-                <span>Spent: ₹{(project.spent / 100000).toFixed(1)}L</span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function ProjectTimeline() {
-  return (
-    <div className="dashboard-content">
-      <h2>Project Timeline</h2>
-      <p>Track project milestones and deadlines</p>
-      <div className="timeline-placeholder">
-        <p>Timeline view will be implemented here</p>
-      </div>
-    </div>
-  );
-}
-
-function ResourceManagement() {
-  return (
-    <div className="dashboard-content">
-      <h2>Resource Management</h2>
-      <p>Manage team resources and allocations</p>
-      <div className="resource-placeholder">
-        <p>Resource management tools will be implemented here</p>
-      </div>
-    </div>
-  );
-}
-
-function PMReports() {
-  return (
-    <div className="dashboard-content">
-      <h2>PM Reports</h2>
-      <p>Project manager specific reports and analytics</p>
-      <div className="reports-placeholder">
-        <p>PM reports will be implemented here</p>
-      </div>
-    </div>
-  );
-}
-
-// Customer Portal Component
-function CustomerPortal() {
-  const { user, logout } = useAuth();
-  const [activeTab, setActiveTab] = useState('dashboard');
-
-  const renderContent = () => {
-    switch(activeTab) {
-      case 'dashboard':
-        return <CustomerDashboardContent />;
-      case 'projects':
-        return <CustomerProjects />;
-      case 'payments':
-        return <CustomerPayments />;
-      case 'support':
-        return <CustomerSupport />;
-      default:
-        return <CustomerDashboardContent />;
-    }
-  };
-
-  return (
-    <div className="dashboard">
-      <div className="dashboard-header">
-        <div className="header-left">
-          <h2>Customer Portal</h2>
-          <p>Welcome back, {user.name}</p>
-        </div>
-        <div className="header-right">
-          <div className="user-info">
-            <img src={user.avatar} alt={user.name} className="avatar" />
-            <div className="user-details">
-              <span className="user-name">{user.name}</span>
-              <span className="user-role">{user.title}</span>
-            </div>
-            <button onClick={logout} className="logout-btn">Logout</button>
-          </div>
-        </div>
-      </div>
-
-      <div className="dashboard-layout">
-        <div className="sidebar">
-          <nav className="nav-menu">
-            <button 
-              className={activeTab === 'dashboard' ? 'active' : ''}
-              onClick={() => setActiveTab('dashboard')}
-            >
-              🏠 Dashboard
-            </button>
-            <button 
-              className={activeTab === 'projects' ? 'active' : ''}
-              onClick={() => setActiveTab('projects')}
-            >
-              🏗️ My Projects
-            </button>
-            <button 
-              className={activeTab === 'payments' ? 'active' : ''}
-              onClick={() => setActiveTab('payments')}
-            >
-              💳 Payments
-            </button>
-            <button 
-              className={activeTab === 'support' ? 'active' : ''}
-              onClick={() => setActiveTab('support')}
-            >
-              🎧 Support
-            </button>
-          </nav>
-        </div>
-
-        <div className="main-content">
-          {renderContent()}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function CustomerDashboardContent() {
-  return (
-    <div className="dashboard-content">
-      <h2>My Project Overview</h2>
-      <div className="customer-projects">
-        {SAMPLE_DATA.projects.filter(p => p.customerName === 'Sharma Family').map(project => (
-          <div key={project.id} className="customer-project-card">
-            <h3>{project.id} - Interior Design</h3>
-            <p><strong>Designer:</strong> {project.designerName}</p>
-            <p><strong>Status:</strong> {project.status}</p>
-            <div className="progress-bar">
-              <div className="progress-fill" style={{width: `${project.progress}%`}}></div>
-              <span>{project.progress}% Complete</span>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function CustomerProjects() {
-  return (
-    <div className="dashboard-content">
-      <h2>My Projects</h2>
-      <p>View detailed information about your interior design projects</p>
-    </div>
-  );
-}
-
-function CustomerPayments() {
-  return (
-    <div className="dashboard-content">
-      <h2>Payment History</h2>
-      <p>View your payment history and make new payments</p>
-    </div>
-  );
-}
-
-function CustomerSupport() {
-  return (
-    <div className="dashboard-content">
-      <h2>Customer Support</h2>
-      <p>Get help and support for your projects</p>
-    </div>
-  );
-}
-
-// Designer Portal Component
-function DesignerPortal() {
-  const { user, logout } = useAuth();
-  const [activeTab, setActiveTab] = useState('dashboard');
-
-  const renderContent = () => {
-    switch(activeTab) {
-      case 'dashboard':
-        return <DesignerDashboardContent />;
-      case 'leads':
-        return <DesignerLeads />;
-      case 'projects':
-        return <DesignerProjects />;
-      case 'portfolio':
-        return <DesignerPortfolio />;
-      case 'wallet':
-        return <DesignerWallet />;
-      default:
-        return <DesignerDashboardContent />;
-    }
-  };
-
-  return (
-    <div className="dashboard">
-      <div className="dashboard-header">
-        <div className="header-left">
-          <h2>Designer Portal</h2>
-          <p>Welcome back, {user.name}</p>
-        </div>
-        <div className="header-right">
-          <div className="user-info">
-            <img src={user.avatar} alt={user.name} className="avatar" />
-            <div className="user-details">
-              <span className="user-name">{user.name}</span>
-              <span className="user-role">{user.title}</span>
-            </div>
-            <button onClick={logout} className="logout-btn">Logout</button>
-          </div>
-        </div>
-      </div>
-
-      <div className="dashboard-layout">
-        <div className="sidebar">
-          <nav className="nav-menu">
-            <button 
-              className={activeTab === 'dashboard' ? 'active' : ''}
-              onClick={() => setActiveTab('dashboard')}
-            >
-              🎨 Dashboard
-            </button>
-            <button 
-              className={activeTab === 'leads' ? 'active' : ''}
-              onClick={() => setActiveTab('leads')}
-            >
-              📈 Leads
-            </button>
-            <button 
-              className={activeTab === 'projects' ? 'active' : ''}
-              onClick={() => setActiveTab('projects')}
-            >
-              🏗️ Projects
-            </button>
-            <button 
-              className={activeTab === 'portfolio' ? 'active' : ''}
-              onClick={() => setActiveTab('portfolio')}
-            >
-              📂 Portfolio
-            </button>
-            <button 
-              className={activeTab === 'wallet' ? 'active' : ''}
-              onClick={() => setActiveTab('wallet')}
-            >
-              💰 Wallet
-            </button>
-          </nav>
-        </div>
-
-        <div className="main-content">
-          {renderContent()}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function DesignerDashboardContent() {
-  return (
-    <div className="dashboard-content">
-      <h2>Designer Dashboard</h2>
-      <div className="designer-stats">
-        <div className="stat-card">
-          <h3>5</h3>
-          <p>Active Projects</p>
-        </div>
-        <div className="stat-card">
-          <h3>12</h3>
-          <p>New Leads</p>
-        </div>
-        <div className="stat-card">
-          <h3>₹85K</h3>
-          <p>This Month Earnings</p>
-        </div>
-        <div className="stat-card">
-          <h3>4.8⭐</h3>
-          <p>Rating</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function DesignerLeads() {
-  return (
-    <div className="dashboard-content">
-      <h2>My Leads</h2>
-      <p>Manage your leads and convert them to projects</p>
-    </div>
-  );
-}
-
-function DesignerProjects() {
-  return (
-    <div className="dashboard-content">
-      <h2>My Projects</h2>
-      <p>Track your current design projects</p>
-    </div>
-  );
-}
-
-function DesignerPortfolio() {
-  return (
-    <div className="dashboard-content">
-      <h2>My Portfolio</h2>
-      <p>Showcase your design work and achievements</p>
-    </div>
-  );
-}
-
-function DesignerWallet() {
-  return (
-    <div className="dashboard-content">
-      <h2>Digital Wallet</h2>
-      <p>Manage your earnings and payments</p>
-    </div>
-  );
-}
-
-// Procurement Portal Component
-function ProcurementPortal() {
-  const { user, logout } = useAuth();
-  const [activeTab, setActiveTab] = useState('dashboard');
-
-  const renderContent = () => {
-    switch(activeTab) {
-      case 'dashboard':
-        return <ProcurementDashboardContent />;
-      case 'inventory':
-        return <InventoryManagement />;
-      case 'vendors':
-        return <VendorManagement />;
-      case 'orders':
-        return <OrderManagement />;
-      default:
-        return <ProcurementDashboardContent />;
-    }
-  };
-
-  return (
-    <div className="dashboard">
-      <div className="dashboard-header">
-        <div className="header-left">
-          <h2>Procurement Portal</h2>
-          <p>Welcome back, {user.name}</p>
-        </div>
-        <div className="header-right">
-          <div className="user-info">
-            <img src={user.avatar} alt={user.name} className="avatar" />
-            <div className="user-details">
-              <span className="user-name">{user.name}</span>
-              <span className="user-role">{user.title}</span>
-            </div>
-            <button onClick={logout} className="logout-btn">Logout</button>
-          </div>
-        </div>
-      </div>
-
-      <div className="dashboard-layout">
-        <div className="sidebar">
-          <nav className="nav-menu">
-            <button 
-              className={activeTab === 'dashboard' ? 'active' : ''}
-              onClick={() => setActiveTab('dashboard')}
-            >
-              📦 Dashboard
-            </button>
-            <button 
-              className={activeTab === 'inventory' ? 'active' : ''}
-              onClick={() => setActiveTab('inventory')}
-            >
-              📋 Inventory
-            </button>
-            <button 
-              className={activeTab === 'vendors' ? 'active' : ''}
-              onClick={() => setActiveTab('vendors')}
-            >
-              🏢 Vendors
-            </button>
-            <button 
-              className={activeTab === 'orders' ? 'active' : ''}
-              onClick={() => setActiveTab('orders')}
-            >
-              🛒 Orders
-            </button>
-          </nav>
-        </div>
-
-        <div className="main-content">
-          {renderContent()}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function ProcurementDashboardContent() {
-  return (
-    <div className="dashboard-content">
-      <h2>Procurement Overview</h2>
-      <div className="procurement-stats">
-        <div className="stat-card">
-          <h3>150</h3>
-          <p>Active Items</p>
-        </div>
-        <div className="stat-card">
-          <h3>25</h3>
-          <p>Pending Orders</p>
-        </div>
-        <div className="stat-card">
-          <h3>12</h3>
-          <p>Vendors</p>
-        </div>
-        <div className="stat-card">
-          <h3>₹2.5L</h3>
-          <p>Monthly Spend</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function InventoryManagement() {
-  return (
-    <div className="dashboard-content">
-      <h2>Inventory Management</h2>
-      <p>Manage materials and inventory levels</p>
-    </div>
-  );
-}
-
-function VendorManagement() {
-  return (
-    <div className="dashboard-content">
-      <h2>Vendor Management</h2>
-      <p>Manage suppliers and vendor relationships</p>
-    </div>
-  );
-}
-
-function OrderManagement() {
-  return (
-    <div className="dashboard-content">
-      <h2>Order Management</h2>
-      <p>Track and manage material orders</p>
-    </div>
-  );
-}
-
-// Main App Component (Enhanced)
+// Main App Component
 function App() {
   const { user, loading } = useAuth();
 
   if (loading) {
     return (
       <div className="loading-screen">
-        <div className="loading-animation">
-          <div className="loading-spinner"></div>
-          <h2>Loading Gharinto...</h2>
-          <p>Preparing your interior design experience</p>
+        <div className="loading-spinner">
+          <div className="spinner"></div>
+          <p>Loading Gharinto...</p>
         </div>
       </div>
     );
@@ -2479,7 +1579,7 @@ function App() {
     return <LandingPage />;
   }
 
-  // Route based on user role
+  // Return appropriate dashboard based on user role
   switch (user.role) {
     case 'admin':
       return <AdminDashboard />;
@@ -2496,11 +1596,104 @@ function App() {
   }
 }
 
-// Include all the other dashboard components with similar enhancements...
-// PMDashboard, CustomerPortal, DesignerPortal, ProcurementPortal components...
+// Dashboard Components (Placeholder for now - will be enhanced in next file)
+function AdminDashboard() {
+  const { user, logout } = useAuth();
+  
+  return (
+    <div className="dashboard">
+      <div className="dashboard-header">
+        <h2>Admin Dashboard</h2>
+        <div className="user-info">
+          <span>Welcome, {user.name}</span>
+          <button onClick={logout} className="logout-btn">Logout</button>
+        </div>
+      </div>
+      <div className="dashboard-content">
+        <p>Admin Dashboard - Coming Soon with Enhanced Features</p>
+      </div>
+    </div>
+  );
+}
 
-// Root App with Auth Provider
-function AppWithAuth() {
+function PMDashboard() {
+  const { user, logout } = useAuth();
+  
+  return (
+    <div className="dashboard">
+      <div className="dashboard-header">
+        <h2>Project Manager Dashboard</h2>
+        <div className="user-info">
+          <span>Welcome, {user.name}</span>
+          <button onClick={logout} className="logout-btn">Logout</button>
+        </div>
+      </div>
+      <div className="dashboard-content">
+        <p>PM Dashboard - Coming Soon with Enhanced Features</p>
+      </div>
+    </div>
+  );
+}
+
+function CustomerPortal() {
+  const { user, logout } = useAuth();
+  
+  return (
+    <div className="dashboard">
+      <div className="dashboard-header">
+        <h2>Customer Portal</h2>
+        <div className="user-info">
+          <span>Welcome, {user.name}</span>
+          <button onClick={logout} className="logout-btn">Logout</button>
+        </div>
+      </div>
+      <div className="dashboard-content">
+        <p>Customer Portal - Coming Soon with Enhanced Features</p>
+      </div>
+    </div>
+  );
+}
+
+function DesignerPortal() {
+  const { user, logout } = useAuth();
+  
+  return (
+    <div className="dashboard">
+      <div className="dashboard-header">
+        <h2>Designer Portal</h2>
+        <div className="user-info">
+          <span>Welcome, {user.name}</span>
+          <button onClick={logout} className="logout-btn">Logout</button>
+        </div>
+      </div>
+      <div className="dashboard-content">
+        <p>Designer Portal - Coming Soon with Enhanced Features</p>
+      </div>
+    </div>
+  );
+}
+
+function ProcurementPortal() {
+  const { user, logout } = useAuth();
+  
+  return (
+    <div className="dashboard">
+      <div className="dashboard-header">
+        <h2>Procurement Portal</h2>
+        <div className="user-info">
+          <span>Welcome, {user.name}</span>
+          <button onClick={logout} className="logout-btn">Logout</button>
+        </div>
+      </div>
+      <div className="dashboard-content">
+        <p>Procurement Portal - Coming Soon with Enhanced Features</p>
+      </div>
+    </div>
+  );
+}
+
+// Wrap App with AuthProvider
+function AppRoot() {
   return (
     <AuthProvider>
       <App />
@@ -2508,4 +1701,4 @@ function AppWithAuth() {
   );
 }
 
-export default AppWithAuth;
+export default AppRoot;
